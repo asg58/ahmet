@@ -1,0 +1,1405 @@
+{
+  "blender_chroma_db.py": {
+    "lines": 1080,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 0,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (blender_chroma_db, line 132)'",
+        "line": 132
+      }
+    ]
+  },
+  "blender_client_lib.py": {
+    "lines": 348,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 0,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (blender_client_lib, line 60)'",
+        "line": 60
+      }
+    ]
+  },
+  "blender_config.py": {
+    "lines": 129,
+    "functions": 2,
+    "classes": 0,
+    "imports": 2,
+    "comments": 0,
+    "docstrings": 2,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "convention",
+        "message": "Line too long (205/100)",
+        "line": 50
+      },
+      {
+        "type": "convention",
+        "message": "Line too long (223/100)",
+        "line": 54
+      },
+      {
+        "type": "convention",
+        "message": "Line too long (205/100)",
+        "line": 76
+      },
+      {
+        "type": "convention",
+        "message": "Line too long (223/100)",
+        "line": 80
+      },
+      {
+        "type": "convention",
+        "message": "Trailing newlines",
+        "line": 129
+      },
+      {
+        "type": "convention",
+        "message": "Missing module docstring",
+        "line": 1
+      },
+      {
+        "type": "warning",
+        "message": "Redefining name 'filename' from outer scope (line 49)",
+        "line": 11
+      },
+      {
+        "type": "warning",
+        "message": "Redefining name 'path' from outer scope (line 53)",
+        "line": 22
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 33
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 34
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 35
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 36
+      },
+      {
+        "type": "warning",
+        "message": "String statement has no effect",
+        "line": 37
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 38
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 39
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 40
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 41
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 42
+      },
+      {
+        "type": "warning",
+        "message": "String statement has no effect",
+        "line": 43
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 44
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 46
+      },
+      {
+        "type": "warning",
+        "message": "Unreachable code",
+        "line": 52
+      },
+      {
+        "type": "error",
+        "message": "Return outside function",
+        "line": 51
+      },
+      {
+        "type": "error",
+        "message": "Using variable 'filename' before assignment",
+        "line": 51
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 52
+      },
+      {
+        "type": "warning",
+        "message": "Unreachable code",
+        "line": 56
+      },
+      {
+        "type": "error",
+        "message": "Return outside function",
+        "line": 55
+      },
+      {
+        "type": "error",
+        "message": "Using variable 'path' before assignment",
+        "line": 55
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 56
+      },
+      {
+        "type": "warning",
+        "message": "String statement has no effect",
+        "line": 60
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 61
+      },
+      {
+        "type": "warning",
+        "message": "String statement has no effect",
+        "line": 62
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 63
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 66
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 69
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 70
+      },
+      {
+        "type": "warning",
+        "message": "String statement has no effect",
+        "line": 71
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 72
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 73
+      },
+      {
+        "type": "convention",
+        "message": "Constant name \"exist_ok\" doesn't conform to UPPER_CASE naming style",
+        "line": 74
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 83
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 84
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 85
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 87
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 88
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 89
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 92
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 95
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 96
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 97
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 98
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 99
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 100
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 101
+      },
+      {
+        "type": "warning",
+        "message": "String statement has no effect",
+        "line": 102
+      },
+      {
+        "type": "warning",
+        "message": "String statement has no effect",
+        "line": 103
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 106
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 108
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 111
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 115
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 120
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 123
+      },
+      {
+        "type": "warning",
+        "message": "Statement seems to have no effect",
+        "line": 126
+      }
+    ]
+  },
+  "blender_utils.py": {
+    "lines": 300,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 0,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (blender_utils, line 115)'",
+        "line": 115
+      }
+    ]
+  },
+  "blender_web_interface.py": {
+    "lines": 1298,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 3,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid decimal literal (blender_web_interface, line 676)'",
+        "line": 676
+      }
+    ]
+  },
+  "checkpoint_blender_websocket_v1.py": {
+    "lines": 341,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 0,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (checkpoint_blender_websocket_v1, line 116)'",
+        "line": 116
+      }
+    ]
+  },
+  "context_helper.py": {
+    "lines": 88,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 16,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'unterminated string literal (detected at line 25) (context_helper, line 25)'",
+        "line": 25
+      }
+    ]
+  },
+  "create_3d_car.py": {
+    "lines": 313,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 5,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (create_3d_car, line 106)'",
+        "line": 106
+      }
+    ]
+  },
+  "create_3d_rings.py": {
+    "lines": 418,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 3,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (create_3d_rings, line 114)'",
+        "line": 114
+      }
+    ]
+  },
+  "create_3d_tree.py": {
+    "lines": 353,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 5,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (create_3d_tree, line 106)'",
+        "line": 106
+      }
+    ]
+  },
+  "create_checkpoint.py": {
+    "lines": 1482,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 0,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (create_checkpoint, line 307)'",
+        "line": 307
+      }
+    ]
+  },
+  "create_client_template.py": {
+    "lines": 290,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 2,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (create_client_template, line 83)'",
+        "line": 83
+      }
+    ]
+  },
+  "create_doosletters.py": {
+    "lines": 418,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 3,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (create_doosletters, line 114)'",
+        "line": 114
+      }
+    ]
+  },
+  "create_ozan_letters.py": {
+    "lines": 418,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 3,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (create_ozan_letters, line 114)'",
+        "line": 114
+      }
+    ]
+  },
+  "create_ozan_with_profile.py": {
+    "lines": 418,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 3,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (create_ozan_with_profile, line 114)'",
+        "line": 114
+      }
+    ]
+  },
+  "create_simple_3d_rings.py": {
+    "lines": 418,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 3,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (create_simple_3d_rings, line 114)'",
+        "line": 114
+      }
+    ]
+  },
+  "create_vertical_doosletters.py": {
+    "lines": 418,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 3,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (create_vertical_doosletters, line 114)'",
+        "line": 114
+      }
+    ]
+  },
+  "index_blender_files.py": {
+    "lines": 1108,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 0,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (index_blender_files, line 168)'",
+        "line": 168
+      }
+    ]
+  },
+  "install_hooks.py": {
+    "lines": 311,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 0,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (install_hooks, line 78)'",
+        "line": 78
+      }
+    ]
+  },
+  "install_websockets.py": {
+    "lines": 252,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 0,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (install_websockets, line 67)'",
+        "line": 67
+      }
+    ]
+  },
+  "pre_code_check.py": {
+    "lines": 1152,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 0,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'only single target (not tuple) can be annotated (pre_code_check, line 275)'",
+        "line": 275
+      }
+    ]
+  },
+  "pre_commit_hook.py": {
+    "lines": 830,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 0,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (pre_commit_hook, line 242)'",
+        "line": 242
+      }
+    ]
+  },
+  "save_scene.py": {
+    "lines": 418,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 3,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (save_scene, line 114)'",
+        "line": 114
+      }
+    ]
+  },
+  "test_client.py": {
+    "lines": 424,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 3,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (test_client, line 120)'",
+        "line": 120
+      }
+    ]
+  },
+  "test_sphere.py": {
+    "lines": 424,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 3,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (test_sphere, line 120)'",
+        "line": 120
+      }
+    ]
+  },
+  "blender_agent\\websocket_server.py": {
+    "lines": 865,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 0,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (websocket_server, line 116)'",
+        "line": 116
+      }
+    ]
+  },
+  "blender_websocket_v1_base\\blender_agent\\websocket_server.py": {
+    "lines": 865,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 0,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (websocket_server, line 116)'",
+        "line": 116
+      }
+    ]
+  },
+  "checkpoints\\blender_websocket_v1_base\\blender_agent\\websocket_server.py": {
+    "lines": 865,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 0,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (websocket_server, line 116)'",
+        "line": 116
+      }
+    ]
+  },
+  "checkpoints\\blender_websocket_v1_base\\blender_websocket_v1_base\\blender_agent\\websocket_server.py": {
+    "lines": 865,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 0,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (websocket_server, line 116)'",
+        "line": 116
+      }
+    ]
+  },
+  "checkpoints\\checkpoint_20250414_154150\\blender_agent\\websocket_server.py": {
+    "lines": 865,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 0,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (websocket_server, line 116)'",
+        "line": 116
+      }
+    ]
+  },
+  "checkpoints\\checkpoint_20250414_154150\\blender_websocket_v1_base\\blender_agent\\websocket_server.py": {
+    "lines": 865,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 0,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (websocket_server, line 116)'",
+        "line": 116
+      }
+    ]
+  },
+  "scripts\\analyze_code_quality.py": {
+    "lines": 335,
+    "functions": 7,
+    "classes": 1,
+    "imports": 10,
+    "comments": 27,
+    "docstrings": 7,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 19
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 24
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 32
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 46
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 50
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 55
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 59
+      },
+      {
+        "type": "convention",
+        "message": "Line too long (103/100)",
+        "line": 61
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 66
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 68
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 81
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 85
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 89
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 93
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 110
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 139
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 141
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 145
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 150
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 156
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 159
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 260
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 279
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 286
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 290
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 299
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 306
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 308
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 314
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 318
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 322
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 324
+      },
+      {
+        "type": "convention",
+        "message": "Trailing newlines",
+        "line": 335
+      },
+      {
+        "type": "warning",
+        "message": "Unused variable 'dirs'",
+        "line": 51
+      },
+      {
+        "type": "warning",
+        "message": "Catching too general exception Exception",
+        "line": 142
+      },
+      {
+        "type": "warning",
+        "message": "Catching too general exception Exception",
+        "line": 108
+      },
+      {
+        "type": "refactor",
+        "message": "Consider merging these isinstance calls to isinstance(node, (ast.Import, ast.ImportFrom))",
+        "line": 106
+      },
+      {
+        "type": "warning",
+        "message": "Catching too general exception Exception",
+        "line": 137
+      },
+      {
+        "type": "refactor",
+        "message": "Too many branches (13/12)",
+        "line": 69
+      },
+      {
+        "type": "warning",
+        "message": "Catching too general exception Exception",
+        "line": 257
+      },
+      {
+        "type": "warning",
+        "message": "Catching too general exception Exception",
+        "line": 276
+      },
+      {
+        "type": "warning",
+        "message": "Catching too general exception Exception",
+        "line": 292
+      },
+      {
+        "type": "warning",
+        "message": "Using open without explicitly specifying an encoding",
+        "line": 284
+      },
+      {
+        "type": "warning",
+        "message": "Using open without explicitly specifying an encoding",
+        "line": 288
+      },
+      {
+        "type": "warning",
+        "message": "Catching too general exception Exception",
+        "line": 325
+      },
+      {
+        "type": "warning",
+        "message": "Unused defaultdict imported from collections",
+        "line": 13
+      }
+    ]
+  },
+  "scripts\\analyze_trends.py": {
+    "lines": 1518,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 5,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'only single target (not tuple) can be annotated (analyze_trends, line 243)'",
+        "line": 243
+      }
+    ]
+  },
+  "scripts\\auto_fix_quality.py": {
+    "lines": 231,
+    "functions": 8,
+    "classes": 1,
+    "imports": 8,
+    "comments": 19,
+    "docstrings": 8,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 17
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 22
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 31
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 37
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 40
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 43
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 49
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 55
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 64
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 70
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 74
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 80
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 83
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 89
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 107
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 113
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 117
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 123
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 127
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 134
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 137
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 142
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 148
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 155
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 160
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 163
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 166
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 173
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 177
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 184
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 188
+      },
+      {
+        "type": "convention",
+        "message": "Line too long (117/100)",
+        "line": 190
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 193
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 196
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 199
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 202
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 204
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 212
+      },
+      {
+        "type": "convention",
+        "message": "Trailing whitespace",
+        "line": 215
+      },
+      {
+        "type": "convention",
+        "message": "Final newline missing",
+        "line": 231
+      },
+      {
+        "type": "warning",
+        "message": "Catching too general exception Exception",
+        "line": 28
+      },
+      {
+        "type": "warning",
+        "message": "Using open without explicitly specifying an encoding",
+        "line": 26
+      },
+      {
+        "type": "warning",
+        "message": "Catching too general exception Exception",
+        "line": 71
+      },
+      {
+        "type": "warning",
+        "message": "Catching too general exception Exception",
+        "line": 114
+      },
+      {
+        "type": "refactor",
+        "message": "Too many local variables (16/15)",
+        "line": 118
+      },
+      {
+        "type": "warning",
+        "message": "Catching too general exception Exception",
+        "line": 174
+      },
+      {
+        "type": "warning",
+        "message": "Catching too general exception Exception",
+        "line": 217
+      },
+      {
+        "type": "error",
+        "message": "Undefined variable 'datetime'",
+        "line": 209
+      },
+      {
+        "type": "warning",
+        "message": "Using open without explicitly specifying an encoding",
+        "line": 213
+      },
+      {
+        "type": "warning",
+        "message": "Catching too general exception Exception",
+        "line": 226
+      },
+      {
+        "type": "warning",
+        "message": "Unused import os",
+        "line": 6
+      },
+      {
+        "type": "warning",
+        "message": "Unused List imported from typing",
+        "line": 10
+      },
+      {
+        "type": "warning",
+        "message": "Unused import re",
+        "line": 11
+      }
+    ]
+  },
+  "scripts\\update_context.py": {
+    "lines": 227,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 14,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'expected an indented block after 'except' statement on line 113 (update_context, line 114)'",
+        "line": 114
+      }
+    ]
+  },
+  "scripts\\validate_against_guide.py": {
+    "lines": 159,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 13,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'unterminated f-string literal (detected at line 84) (validate_against_guide, line 84)'",
+        "line": 84
+      }
+    ]
+  },
+  "scripts\\verify_guide.py": {
+    "lines": 736,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 16,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (verify_guide, line 244)'",
+        "line": 244
+      }
+    ]
+  },
+  "scripts\\visualize_context.py": {
+    "lines": 882,
+    "functions": 0,
+    "classes": 0,
+    "imports": 0,
+    "comments": 13,
+    "docstrings": 0,
+    "complexity": 0,
+    "issues": [
+      {
+        "type": "error",
+        "message": "Parsing failed: 'invalid syntax (visualize_context, line 138)'",
+        "line": 138
+      }
+    ]
+  }
+}

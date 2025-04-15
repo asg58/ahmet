@@ -1,0 +1,5 @@
+# Configureer pre-commit hook
+*.py filter=pre-commit
+[filter "pre-commit"]
+    clean = python .git/hooks/pre-commit
+    smudge = cat 

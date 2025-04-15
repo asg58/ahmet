@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Alle Modellen{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Alle Modellen</h1>
+    <p>Totaal aantal modellen: {{ model_count }}</p>
+    
+    {% if models %}
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for model in models %}
+                <div class="col">
+                    <div class="card model-card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ model.metadata.filename }}</h5>
+                            <p class="card-text">{{ model.description }}</p>
+                            
+                            {% if model.metadata.tags %}
+                                <div class="mb-2">
+                                    {% for tag in model.metadata.tags.split(',') %}
+                                        <span class="badge bg-secondary tag-badge">{{ tag }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="card-footer">
+                            <a href="/model/{{ model.id }}" class="btn btn-sm btn-primary">Details</a>
+                            <a href="/open_model/{{ model.id }}" class="btn btn-sm btn-outline-secondary">Open in Blender</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            Geen modellen gevonden in de database.
+        </div>
+    {% endif %}
+{% endblock %}

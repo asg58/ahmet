@@ -1,0 +1,138 @@
+/* Base App Styling */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  overflow: hidden;
+}
+
+/* Main Content Area - 3D Viewer and Chat */
+.main-content {
+  flex: 1;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+/* 3D Viewer Panel */
+.viewer-panel {
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 0;
+}
+
+.viewer-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.viewer-container canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  outline: none;
+}
+
+/* Render Progress Indicator */
+.render-progress {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+/* Chat Panel */
+.chat-panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 0;
+}
+
+/* Models List Section */
+.models-section {
+  min-height: 160px;
+  max-height: 200px;
+  margin-top: 0.5rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+  }
+  
+  .viewer-panel, .chat-panel {
+    height: 50vh;
+    max-height: 50vh;
+    margin-bottom: 1rem;
+  }
+  
+  .models-section {
+    max-height: 150px;
+  }
+}
+
+/* Utility Classes */
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Animation for loading */
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 0.25rem solid #f3f3f3;
+  border-top-color: #3498db;
+  animation: spinner 1s linear infinite;
+}
+
+/* Connection status indicator */
+.connection-status {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.connection-status.connected {
+  background-color: #28a745;
+}
+
+.connection-status.disconnected {
+  background-color: #dc3545;
+} 

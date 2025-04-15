@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Model Details{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="mb-0">{{ model.metadata.filename }}</h1>
+                </div>
+                <div class="card-body">
+                    <h5>Beschrijving</h5>
+                    <p>{{ model.description }}</p>
+                    
+                    <h5>Bestandslocatie</h5>
+                    <p><code>{{ model.metadata.file_path }}</code></p>
+                    
+                    {% if model.metadata.tags %}
+                        <h5>Tags</h5>
+                        <div class="mb-3">
+                            {% for tag in model.metadata.tags.split(',') %}
+                                <a href="/search?tag={{ tag }}" class="badge bg-primary tag-badge">{{ tag }}</a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    
+                    <h5>Metagegevens</h5>
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <td>Aangemaakt</td>
+                                <td>{{ model.metadata.created|timestamp_to_date }}</td>
+                            </tr>
+                            <tr>
+                                <td>Gewijzigd</td>
+                                <td>{{ model.metadata.modified|timestamp_to_date }}</td>
+                            </tr>
+                            <tr>
+                                <td>Bestandsgrootte</td>
+                                <td>{{ model.metadata.size|filesizeformat }}</td>
+                            </tr>
+                            <tr>
+                                <td>Database ID</td>
+                                <td><code>{{ model.id }}</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="mt-4">
+                        <a href="/open_model/{{ model.id }}" class="btn btn-primary">Open in Blender</a>
+                        <a href="/models" class="btn btn-outline-secondary">Terug naar alle modellen</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

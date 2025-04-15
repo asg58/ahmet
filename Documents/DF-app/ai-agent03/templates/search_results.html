@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Zoekresultaten{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Zoekresultaten</h1>
+    
+    <div class="mb-4">
+        <p>
+            {% if query %}Zoekterm: <strong>{{ query }}</strong>{% endif %}
+            {% if tag %}Tag: <strong>{{ tag }}</strong>{% endif %}
+        </p>
+        <p>{{ result_count }} resultaten gevonden</p>
+    </div>
+    
+    {% if results %}
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for result in results %}
+                <div class="col">
+                    <div class="card model-card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ result.metadata.filename }}</h5>
+                            <p class="card-text">{{ result.description }}</p>
+                            
+                            {% if result.metadata.tags_list %}
+                                <div class="mb-2">
+                                    {% for tag in result.metadata.tags_list %}
+                                        <span class="badge bg-secondary tag-badge">{{ tag }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            
+                            <p class="card-text text-muted">Score: {{ "%.2f"|format(result.score) }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="/model/{{ result.id }}" class="btn btn-sm btn-primary">Details</a>
+                            <a href="/open_model/{{ result.id }}" class="btn btn-sm btn-outline-secondary">Open in Blender</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            Geen resultaten gevonden. Probeer een andere zoekterm.
+        </div>
+    {% endif %}
+    
+    <div class="mt-4">
+        <a href="/" class="btn btn-outline-primary">Terug naar home</a>
+    </div>
+{% endblock %}

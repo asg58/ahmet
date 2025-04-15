@@ -1,0 +1,49 @@
+import React from 'react';
+import { Navbar, Nav, Container, Badge } from 'react-bootstrap';
+import { FaCube, FaRobot, FaCircle, FaCubes } from 'react-icons/fa';
+
+function Header({ connected, blenderConnected, activeTab, onTabChange }) {
+  return (
+    <Navbar bg="dark" variant="dark" expand="lg" className="mb-3">
+      <Container fluid>
+        <Navbar.Brand href="#">
+          <FaCube className="me-2" />
+          Blender AI Dashboard
+        </Navbar.Brand>
+        
+        <Nav className="me-auto">
+          <Nav.Link 
+            active={activeTab === 'browser'} 
+            onClick={() => onTabChange('browser')}
+          >
+            <FaCube className="me-1" /> Modellen Browser
+          </Nav.Link>
+          <Nav.Link 
+            active={activeTab === 'chat'} 
+            onClick={() => onTabChange('chat')}
+          >
+            <FaRobot className="me-1" /> AI Assistent
+          </Nav.Link>
+        </Nav>
+        
+        <Navbar.Text className="d-flex align-items-center me-3">
+          <FaCircle 
+            className={`me-2 ${connected ? 'text-success' : 'text-danger'}`} 
+            size={10} 
+          />
+          <span className="d-none d-md-inline">API:</span> {connected ? 'Verbonden' : 'Niet verbonden'}
+        </Navbar.Text>
+        
+        <Navbar.Text className="d-flex align-items-center">
+          <FaCubes 
+            className={`me-2 ${blenderConnected ? 'text-success' : 'text-danger'}`} 
+            size={10} 
+          />
+          <span className="d-none d-md-inline">Blender:</span> {blenderConnected ? 'Verbonden' : 'Niet verbonden'}
+        </Navbar.Text>
+      </Container>
+    </Navbar>
+  );
+}
+
+export default Header; 

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Blender Models Database{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-8 offset-md-2 text-center">
+            <h1 class="mb-4">Blender 3D Models Database</h1>
+            <p class="lead">Doorzoek en beheer je Blender 3D modellen</p>
+            
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h5 class="card-title">Zoek een 3D model</h5>
+                    <form action="/search" method="get" class="mt-3">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control form-control-lg" name="q" placeholder="Zoekterm...">
+                            <button class="btn btn-primary" type="submit">Zoeken</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h5 class="card-title">Modellen op tag zoeken</h5>
+                    <div class="mt-3">
+                        {% for tag in tags %}
+                            <a href="/search?tag={{ tag }}" class="btn btn-outline-secondary m-1">{{ tag }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-4">
+                <p>Er zijn <strong>{{ model_count }}</strong> modellen in de database</p>
+                <a href="/models" class="btn btn-outline-primary">Bekijk alle modellen</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
