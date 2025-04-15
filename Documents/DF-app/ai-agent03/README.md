@@ -42,4 +42,13 @@ Dit maakt een nieuw Python script met alle benodigde code om te communiceren met
 
 Voor meer informatie zie:
 - blender_websocket_handleiding.md
-- blender_websocket_setup_samenvatting.md 
+- blender_websocket_setup_samenvatting.md
+
+## Project Tracking
+Dit project gebruikt een geautomatiseerd tracking systeem dat:
+- De project context bijhoudt in `PROJECT_CONTEXT.md`
+- Een changelog bijhoudt in `CHANGELOG.md`
+- Automatisch updates maakt bij elke commit
+- Wijzigingen categoriseert en documenteert
+
+Deze documentatie wordt automatisch bijgewerkt door het tracking systeem. 
