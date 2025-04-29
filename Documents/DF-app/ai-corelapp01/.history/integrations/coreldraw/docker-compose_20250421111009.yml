@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  coreldraw-vsta-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: corelai/corelai-vsta-server:latest
+    container_name: coreldraw-vsta-server
+    ports:
+      - "8080:3000"
+    environment:
+      - PORT=3000
+      - HOST=0.0.0.0
+      - MOCK_CORELDRAW=true
+      - LOG_LEVEL=info
+      - DEBUG=false
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./templates:/app/templates
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 10s 

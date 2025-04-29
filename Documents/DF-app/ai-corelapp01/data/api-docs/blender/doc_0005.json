@@ -1,0 +1,11 @@
+{
+  "text": "s.LayerCollection  python bpy.types.GreasePencil  python bpy.types.GreasePencilv3  python bpy.types.Volume  python bpy.types.MovieClip  python bpy.types.Mask  python bpy.types.FileSelectEntry  python bpy.types.FileSelectEntry  python bpy.types.AssetLibraryReference  python bpy.types.AssetRepresentation  python bpy.types.ID  python bpy.types.ID  python bpy.types.Image  python bpy.types.Mask  python bpy.types.Node  python bpy.types.Node  python bpy.types.Light  python bpy.types.Material  python bpy.types.World  python bpy.types.Scene  python bpy.types.ViewLayer  python bpy.types.Object  python bpy.types.Object  python bpy.types.Object  python bpy.types.Object  python bpy.types.Object  python bpy.types.Object  python bpy.types.Object  python bpy.types.EditBone  python bpy.types.EditBone  python bpy.types.EditBone  python bpy.types.EditBone  python bpy.types.PoseBone  python bpy.types.PoseBone  python bpy.types.PoseBone  python bpy.types.EditBone  python bpy.types.Bone  python bpy.types.PoseBone  python bpy.types.Object  python bpy.types.Object  python bpy.types.Object  python bpy.types.Object  python bpy.types.Object  python bpy.types.Object  python bpy.types.Object  python bpy.types.Object  python bpy.types.Object  python bpy.types.Strip  python bpy.types.Strip  python bpy.types.Strip  python bpy.types.Strip  python bpy.types.NlaTrack  python bpy.types.NlaStrip  python bpy.types.NlaStrip  python bpy.types.MovieTrackingTrack  python bpy.types.GreasePencil  python bpy.types.ID  p",
+  "metadata": {
+    "title": "Context Access (bpy.context) - Blender Python API",
+    "source": "https://docs.blender.org/api/current/bpy.context.html",
+    "platform": "blender",
+    "type": "module",
+    "part": 2,
+    "total_parts": 6
+  }
+}

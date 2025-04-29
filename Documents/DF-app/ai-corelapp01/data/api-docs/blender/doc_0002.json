@@ -1,0 +1,11 @@
+{
+  "text": "Manual links The following links take you from the basics to the more advanced concepts of Python scripting for Blender. - Text Editor - Python Console - Info Editor Text Editor Python Console Info Editor External links Here are external links containing a lot of good information to start learning how to write scripts for Blender: - Python API: Quickstart - CG Cookie: Blender 2.8 Python Scripting Superpowers for Non-Programmers - Olav3D Tutorials: 3D Programming for Beginners Using Python - Blender Artists: Python Support Forum Python API: Quickstart CG Cookie: Blender 2.8 Python Scripting Superpowers for Non-Programmers Olav3D Tutorials: 3D Programming for Beginners Using Python Blender Artists: Python Support Forum Add-ons are scripts that enable Blender to gain extra functionality; they can be enabled from the Preferences. Outside of the Blender executable, there are hundreds of add-ons written by many people: - Officially supported add-ons are bundled with Blender. - Other add-ons are provided by Blender Extensions which arenât part of official releases. Many of them work reliably and are very useful but are not yet ensured to be stable for release. Officially supported add-ons are bundled with Blender. Other add-ons are provided by Blender Extensions which arenât part of official releases. Many of them work reliably and are very useful but are not yet ensured to be stable for release. See also See Add-ons for documentation on add-ons included with Blender.",
+  "metadata": {
+    "title": "Introduction - Blender 4.4 Manual",
+    "source": "https://docs.blender.org/manual/en/latest/advanced/scripting/introduction.html",
+    "platform": "blender",
+    "type": "general",
+    "part": 2,
+    "total_parts": 3
+  }
+}

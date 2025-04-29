@@ -1,0 +1,11 @@
+{
+  "text": "# Shape\n\nRepresents a shape in a CorelDRAW document.\n\n## Properties\n\n### Fill\nReturns the fill properties of the shape.\n\n### Outline\nReturns the outline properties of the shape.\n\n## Methods\n\n### Delete\nDeletes the shape.\n\n### Duplicate\nCreates a duplicate of the shape.\n\n",
+  "metadata": {
+    "title": "Shape",
+    "source": "simulated",
+    "platform": "coreldraw",
+    "type": "class",
+    "part": 1,
+    "total_parts": 1
+  }
+}

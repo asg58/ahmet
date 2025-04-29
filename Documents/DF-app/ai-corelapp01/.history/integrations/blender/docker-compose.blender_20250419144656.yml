@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  blender-server:
+    build:
+      context: .
+      dockerfile: Dockerfile.blender
+    ports:
+      - "4201:4201"  # WebSocket port for communicating with Blender
+    volumes:
+      - ./app:/app
+      - ./data:/data
+    environment:
+      - BLENDER_PORT=4201
+      - DEBUG=true
+    restart: unless-stopped
+    networks:
+      - blender-network
+
+networks:
+  blender-network:
+    driver: bridge 

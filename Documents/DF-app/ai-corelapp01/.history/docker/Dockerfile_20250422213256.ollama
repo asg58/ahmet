@@ -1,0 +1,28 @@
+FROM alpine:latest
+
+# Install curl for health checks
+RUN apk add --no-cache curl
+
+# Install Ollama from binary
+RUN wget -O ollama https://github.com/ollama/ollama/releases/download/v0.1.24/ollama-linux-amd64 && \
+    chmod +x ollama && \
+    mv ollama /usr/local/bin/
+
+# Kopieer het initialisatie script
+COPY docker/ollama-init.sh /ollama-init.sh
+
+# Maak het script uitvoerbaar
+RUN chmod +x /ollama-init.sh
+
+# Creëer directory voor Ollama data
+RUN mkdir -p /root/.ollama
+
+# Expose port
+EXPOSE 11434
+
+# Start script
+COPY docker/start-ollama.sh /start-ollama.sh
+RUN chmod +x /start-ollama.sh
+
+# Start Ollama en voer het initialisatie script uit
+CMD ["/start-ollama.sh"] 

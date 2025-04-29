@@ -1,0 +1,61 @@
+# Use a Windows-based Node.js image as base
+FROM mcr.microsoft.com/windows/servercore:ltsc2022 as builder
+
+# Install Node.js
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+RUN Invoke-WebRequest -Uri https://nodejs.org/dist/v20.10.0/node-v20.10.0-x64.msi -OutFile nodejs.msi -UseBasicParsing; \
+    Start-Process msiexec.exe -ArgumentList '/i nodejs.msi /quiet /norestart' -Wait; \
+    Remove-Item -Path nodejs.msi
+
+# Set up working directory
+WORKDIR /app
+
+# Copy package files
+COPY package.json package-lock.json* ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the source code
+COPY . .
+
+# Build the application
+RUN npm run build
+
+# Final image
+FROM mcr.microsoft.com/windows/servercore:ltsc2022
+
+# Install Node.js in the final image
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+RUN Invoke-WebRequest -Uri https://nodejs.org/dist/v20.10.0/node-v20.10.0-x64.msi -OutFile nodejs.msi -UseBasicParsing; \
+    Start-Process msiexec.exe -ArgumentList '/i nodejs.msi /quiet /norestart' -Wait; \
+    Remove-Item -Path nodejs.msi
+
+WORKDIR /app
+
+# Copy from builder
+COPY --from=builder /app/package.json ./
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/dist ./dist
+
+# Create a logs directory
+RUN mkdir logs
+
+# Expose port
+EXPOSE 3001
+
+# Note: CorelDRAW must be installed on the host Windows machine
+# This container is designed to run on a Windows host with CorelDRAW installed
+# The container will use the host's CorelDRAW installation via COM/OLE
+
+# Set environment variables
+ENV NODE_ENV=production
+
+# Start the application
+CMD ["node", "dist/index.js"]
+
+# NOTE: This Dockerfile is provided as a reference, but COM/OLE integration 
+# typically requires the bridge service to run directly on the host Windows 
+# machine rather than in a container. For production use, it's recommended 
+# to install and run the service directly on the Windows host where CorelDRAW 
+# is installed. 

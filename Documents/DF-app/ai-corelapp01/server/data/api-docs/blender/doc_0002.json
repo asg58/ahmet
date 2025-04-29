@@ -1,0 +1,11 @@
+{
+  "text": "# bpy.ops.mesh\n\nMesh operators for creating and modifying meshes.\n\n## Functions\n\n### primitive_cube_add\nAdd a cube mesh object.\n\n### primitive_cylinder_add\nAdd a cylinder mesh object.\n\n",
+  "metadata": {
+    "title": "bpy.ops.mesh",
+    "source": "simulated",
+    "platform": "blender",
+    "type": "module",
+    "part": 1,
+    "total_parts": 1
+  }
+}

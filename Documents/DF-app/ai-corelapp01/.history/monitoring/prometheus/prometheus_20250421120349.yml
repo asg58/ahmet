@@ -1,0 +1,34 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # Node Exporter for host metrics
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+
+  # cAdvisor for container metrics
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']
+
+  # API Server metrics
+  - job_name: 'api-server'
+    static_configs:
+      - targets: ['server:4000']
+
+  # Blender service metrics
+  - job_name: 'blender-service'
+    static_configs:
+      - targets: ['blender-headless:4201']
+
+  # CorelDRAW service metrics (if available)
+  - job_name: 'coreldraw-service'
+    static_configs:
+      - targets: ['coreldraw-bridge:3001'] 

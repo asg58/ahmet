@@ -1,0 +1,26 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Installeer dependencies
+COPY app/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Maak logs directory
+RUN mkdir -p logs
+
+# Kopieer applicatie code
+COPY app/ .
+
+# Expose de API port
+EXPOSE 4201
+
+# Stel omgevingsvariabelen in
+ENV PORT=4201
+ENV HOST=0.0.0.0
+ENV MOCK_BLENDER=true
+ENV LOG_LEVEL=INFO
+ENV DEBUG=false
+
+# Start de applicatie
+CMD ["python", "server.py"] 

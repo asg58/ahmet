@@ -1,0 +1,196 @@
+services:
+  # Frontend (React app)
+  client:
+    build:
+      context: ./client
+      dockerfile: ../docker/Dockerfile.client
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    depends_on:
+      - server
+    networks:
+      - app-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # API Gateway & WebSocket Server
+  server:
+    build:
+      context: ./server
+      dockerfile: ../docker/Dockerfile.server
+    ports:
+      - "4000:4000"  # REST API
+      - "4001:4001"  # WebSocket
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    depends_on:
+      - chromadb
+      - ollama
+      - blender-bridge
+      - coreldraw-bridge
+    environment:
+      - NODE_ENV=development
+      - OLLAMA_HOST=ollama
+      - OLLAMA_PORT=11434
+      - CHROMADB_HOST=chromadb
+      - CHROMADB_PORT=8000
+      - CHROMADB_PROTOCOL=http
+      # CorelDRAW Bridge configuration
+      - CORELDRAW_HOST=host.docker.internal
+      - CORELDRAW_PORT=4500
+      # Blender Bridge configuration
+      - BLENDER_BRIDGE_ENDPOINT=http://blender-bridge:4201
+      - BLENDER_BRIDGE_WS_ENDPOINT=ws://blender-bridge:4202
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - app-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:4000/api/health', (res) => res.statusCode === 200 ? process.exit(0) : process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Blender Bridge Service
+  blender-bridge:
+    build:
+      context: ./integrations/blender
+      dockerfile: ../../docker/Dockerfile.blender-bridge
+    ports:
+      - "4201:4201"  # REST API
+      - "4202:4202"  # WebSocket
+    volumes:
+      - ./integrations/blender:/app
+    environment:
+      - DEBUG=false
+      - PORT=4201
+      - WEBSOCKET_PORT=4202
+      - HOST=0.0.0.0
+      - MOCK_BLENDER=true
+      - LOG_LEVEL=INFO
+    networks:
+      - app-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:4201/health | grep -q '\"status\":\"ok\"' || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # CorelDRAW Bridge Service
+  coreldraw-bridge:
+    build:
+      context: ./integrations/coreldraw
+      dockerfile: ../../docker/Dockerfile.coreldraw-bridge
+    ports:
+      - "4500:4500"  # REST API
+    volumes:
+      - ./integrations/coreldraw:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - PORT=4500
+      - HOST=0.0.0.0
+      - MOCK_MODE=true
+    networks:
+      - app-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4500/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ChromaDB Vector Database
+  chromadb:
+    image: ghcr.io/chroma-core/chroma:latest
+    ports:
+      - "8001:8000"
+    volumes:
+      - chromadb_data:/chroma/chroma
+    environment:
+      - CHROMA_SERVER_HOST=0.0.0.0
+      - CHROMA_SERVER_HTTP_PORT=8000
+    networks:
+      - app-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:8000/api/v1/heartbeat || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Ollama - Local LLM Server
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    deploy:
+      resources:
+        limits:
+          memory: 34GB  # Increased memory for larger models
+    networks:
+      - app-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:11434/api/tags || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  chromadb_data:
+    driver: local
+  ollama_data:
+    driver: local 

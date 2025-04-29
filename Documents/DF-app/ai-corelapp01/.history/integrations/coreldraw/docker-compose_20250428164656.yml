@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  coreldraw-bridge:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: coreldraw_bridge
+    ports:
+      - "4500:3001"  # REST API
+      - "4501:3002"  # WebSocket
+    environment:
+      - PORT=3001
+      - WEBSOCKET_PORT=3002
+      - HOST=0.0.0.0
+      - CORELDRAW_PATH=C:\\Program Files\\Corel\\CorelDRAW Graphics Suite 2021\\Programs\\CorelDRW.exe
+      - MOCK_CORELDRAW=true
+      - LOG_LEVEL=info
+    volumes:
+      - ./src:/app/src
+      - ./logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3001/api/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3" 

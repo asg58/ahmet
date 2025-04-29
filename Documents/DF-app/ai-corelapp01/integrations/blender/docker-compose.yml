@@ -1,0 +1,27 @@
+services:
+  blender-headless:
+    build:
+      context: .
+      dockerfile: Dockerfile.blender
+    image: blender-headless:latest
+    container_name: blender-headless
+    ports:
+      - "9090:4201"
+      - "9091:4202"
+    environment:
+      - PORT=4201
+      - HOST=0.0.0.0
+      - MOCK_BLENDER=true
+      - LOG_LEVEL=INFO
+      - DEBUG=false
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./models:/app/models
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4201/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 10s 

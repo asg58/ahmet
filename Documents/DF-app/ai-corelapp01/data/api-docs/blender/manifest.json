@@ -1,0 +1,12 @@
+{
+  "count": 13,
+  "platform": "blender",
+  "sources": [
+    "https://docs.blender.org/api/current/",
+    "https://docs.blender.org/api/current/bpy.context.html",
+    "https://docs.blender.org/api/current/bpy.data.html",
+    "https://docs.blender.org/api/current/bpy.ops.html",
+    "https://docs.blender.org/manual/en/latest/advanced/scripting/introduction.html"
+  ],
+  "timestamp": "2025-04-18T20:49:55.725839"
+}

@@ -1,0 +1,11 @@
+flask==2.0.1
+flask-cors==3.0.10
+requests==2.31.0
+python-dotenv==0.19.0
+gunicorn==21.2.0
+websockets==10.4
+loguru==0.5.3
+blinker==1.6.2
+Pillow==9.2.0
+numpy==1.23.3
+ujson==5.4.0 

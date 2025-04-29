@@ -1,0 +1,11 @@
+{
+  "text": "ython bpy.types.GPencilLayer  python bpy.types.GreasePencilv3  python bpy.types.Operator  python bpy.types.Action  python bpy.types.Action  python bpy.types.Action  python bpy.types.FCurve  python bpy.types.FCurve  python bpy.types.FCurve  python bpy.types.FCurve  python bpy.types.FCurve  python bpy.types.Keyframe  python bpy.types.UIList  python bpy.types.AnyType  python str  python int  python bpy.types.ID  python  Example inserting keyframe for the hovered property.",
+  "metadata": {
+    "title": "Context Access (bpy.context) - Blender Python API",
+    "source": "https://docs.blender.org/api/current/bpy.context.html",
+    "platform": "blender",
+    "type": "module",
+    "part": 3,
+    "total_parts": 6
+  }
+}

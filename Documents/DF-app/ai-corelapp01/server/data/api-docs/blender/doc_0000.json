@@ -1,0 +1,11 @@
+{
+  "text": "# bpy\n\nThe main Blender Python API module.\n\n## Submodules\n\n### context\nContext access (current scene, view3d, etc).\n\n### data\nAccess to Blender's internal data.\n\n### ops\nPython access to operators.\n\n",
+  "metadata": {
+    "title": "bpy",
+    "source": "simulated",
+    "platform": "blender",
+    "type": "module",
+    "part": 1,
+    "total_parts": 1
+  }
+}

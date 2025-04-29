@@ -1,0 +1,60 @@
+FROM ubuntu:22.04
+
+# Installeer essentiële pakketten
+RUN apt-get update && apt-get install -y \
+    wget \
+    xz-utils \
+    python3-pip \
+    python3-dev \
+    libx11-6 \
+    xvfb \
+    libxrender1 \
+    libxfixes3 \
+    curl \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Maak werkdirectory
+WORKDIR /app
+
+# Download en installeer Blender (meest recente LTS versie)
+RUN wget -q https://download.blender.org/release/Blender3.6/blender-3.6.0-linux-x64.tar.xz \
+    && tar -xf blender-3.6.0-linux-x64.tar.xz \
+    && rm blender-3.6.0-linux-x64.tar.xz \
+    && mv blender-3.6.0-linux-x64 /opt/blender
+
+# Voeg Blender toe aan het PATH
+ENV PATH="/opt/blender:${PATH}"
+
+# Installeer specifieke werkzeug en Flask versies om compatibiliteitsproblemen te voorkomen
+RUN pip3 install --no-cache-dir werkzeug==2.0.3 Flask==2.0.3
+
+# Installeer Python vereisten
+COPY app/requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt \
+    && pip3 install websockets
+
+# Maak logs directory
+RUN mkdir -p logs
+RUN mkdir -p data
+RUN mkdir -p models
+
+# Kopieer applicatie code
+COPY app/ .
+
+# Expose zowel REST API als WebSocket poorten
+EXPOSE 4201 4202
+
+# Stel omgevingsvariabelen in
+ENV PORT=4201
+ENV WEBSOCKET_PORT=4202
+ENV HOST=0.0.0.0
+ENV MOCK_BLENDER=true
+ENV LOG_LEVEL=INFO
+ENV DEBUG=false
+ENV BLENDER_PATH=/opt/blender/blender
+
+# Start de applicatie via een wrapper script
+COPY app/start.sh .
+RUN chmod +x start.sh
+CMD ["./start.sh"] 

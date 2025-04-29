@@ -1,0 +1,58 @@
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+
+positions:
+  filename: /tmp/positions.yaml
+
+clients:
+  - url: http://loki:3100/loki/api/v1/push
+
+scrape_configs:
+  - job_name: system
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: varlogs
+          __path__: /var/log/*log
+
+  - job_name: app_logs
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: app_logs
+          __path__: /logs/*log
+
+  - job_name: server_logs
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: server_logs
+          __path__: /logs/server/*log
+
+  - job_name: client_logs
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: client_logs
+          __path__: /logs/client/*log
+
+  - job_name: blender_logs
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: blender_logs
+          __path__: /logs/blender/*log
+
+  - job_name: coreldraw_logs
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: coreldraw_logs
+          __path__: /logs/coreldraw/*log 

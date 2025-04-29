@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UUID Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/uuid@9.0.1/dist/index.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .result {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-family: monospace;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>UUID Test</h1>
+    <p>This page tests the UUID library imported from a CDN.</p>
+    
+    <button id="generate">Generate UUID</button>
+    
+    <div id="result" class="result">UUID will appear here...</div>
+    
+    <script>
+        document.getElementById('generate').addEventListener('click', function() {
+            const uuid = window.uuid.v4();
+            document.getElementById('result').textContent = uuid;
+        });
+        
+        // Generate a UUID on page load
+        document.getElementById('result').textContent = window.uuid.v4();
+    </script>
+</body>
+</html> 

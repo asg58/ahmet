@@ -1,0 +1,31 @@
+FROM python:3.9-slim
+
+WORKDIR /app
+
+# Install dependencies
+COPY integrations/blender/requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application code
+COPY integrations/blender/app /app
+
+# Add grep for healthcheck
+RUN apt-get update && apt-get install -y curl grep && rm -rf /var/lib/apt/lists/*
+
+# Set environment variables
+ENV DEBUG=false
+ENV PORT=4201
+ENV WEBSOCKET_PORT=4202
+ENV HOST=0.0.0.0
+ENV MOCK_BLENDER=true
+ENV LOG_LEVEL=INFO
+
+# Create log directory
+RUN mkdir -p logs
+
+# Expose ports
+EXPOSE 4201
+EXPOSE 4202
+
+# Start the server
+CMD ["python", "server.py", "--no-debug"] 

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UUID v11 Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/uuid@11.1.0/dist/index.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .result {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-family: monospace;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>UUID v11 Test</h1>
+    <p>This page tests the UUID v11.1.0 library imported from a CDN.</p>
+    
+    <button id="generate">Generate UUID</button>
+    
+    <div id="result" class="result">UUID will appear here...</div>
+    <div id="debug" class="result">Debug info will appear here...</div>
+    
+    <script>
+        document.getElementById('debug').textContent = 'UUID object available: ' + (window.uuid !== undefined);
+        
+        if (window.uuid) {
+            document.getElementById('debug').textContent += '\nUUID v4 function available: ' + (typeof window.uuid.v4 === 'function');
+        }
+        
+        try {
+            document.getElementById('generate').addEventListener('click', function() {
+                try {
+                    // For UUID v11, we need to use the correct function
+                    // It might be v4 or it might have a different structure
+                    let uuidStr = '';
+                    
+                    if (typeof window.uuid.v4 === 'function') {
+                        uuidStr = window.uuid.v4();
+                    } else if (typeof window.uuid === 'function') {
+                        uuidStr = window.uuid();
+                    } else if (window.uuid && window.uuid.default && typeof window.uuid.default.v4 === 'function') {
+                        uuidStr = window.uuid.default.v4();
+                    } else {
+                        uuidStr = 'UUID function not found in expected formats';
+                    }
+                    
+                    document.getElementById('result').textContent = uuidStr;
+                } catch (e) {
+                    document.getElementById('result').textContent = 'Error: ' + e.message;
+                    console.error(e);
+                }
+            });
+            
+            // Print available properties on the UUID object
+            let props = [];
+            for (let prop in window.uuid) {
+                props.push(prop);
+            }
+            document.getElementById('debug').textContent += '\nAvailable properties: ' + props.join(', ');
+        } catch (e) {
+            document.getElementById('debug').textContent += '\nError during initialization: ' + e.message;
+            console.error(e);
+        }
+    </script>
+</body>
+</html> 

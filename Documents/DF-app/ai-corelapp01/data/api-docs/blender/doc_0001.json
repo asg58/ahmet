@@ -1,0 +1,11 @@
+{
+  "text": "Python is an interpreted, interactive, object-oriented programming language. It incorporates modules, exceptions, dynamic typing, very high-level dynamic data types, and classes. Python combines remarkable power with very clear syntax. Python scripts are a versatile way to extend Blender functionality. Most areas of Blender can be scripted, including animation, rendering, import and export, object creation and automating repetitive tasks. To interact with Blender, scripts can make use of the tightly integrated API. Links that are useful while writing scripts: - Python.org â General information about Python. - Blender Python API â Official API documentation. Use this for referencing while writing scripts. - API Introduction â A short introduction to get you started with the API. Contains examples. Python.org â General information about Python. Blender Python API â Official API documentation. Use this for referencing while writing scripts. API Introduction â A short introduction to get you started with the API. Contains examples. Links that deal with distributing your scripts: - Creating Add-ons â Add-ons are used to encapsulate and distribute scripts. - Creating Extensions â Share add-ons on the Blender Extensions platform. Creating Add-ons â Add-ons are used to encapsulate and distribute scripts. Creating Extensions â Share add-ons on the Blender Extensions platform.",
+  "metadata": {
+    "title": "Introduction - Blender 4.4 Manual",
+    "source": "https://docs.blender.org/manual/en/latest/advanced/scripting/introduction.html",
+    "platform": "blender",
+    "type": "general",
+    "part": 1,
+    "total_parts": 3
+  }
+}

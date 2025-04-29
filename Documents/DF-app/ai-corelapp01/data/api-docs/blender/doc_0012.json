@@ -1,0 +1,11 @@
+{
+  "text": "import bpy from bpy import context for window in context.window_manager.windows: screen  window.screen for area in screen.areas: if area.type  'VIEW_3D': with context.temp_override(windowwindow, areaarea): bpy.ops.screen.screen_full_area() break",
+  "metadata": {
+    "title": "Operators (bpy.ops) - Blender Python API",
+    "source": "https://docs.blender.org/api/current/bpy.ops.html",
+    "platform": "blender",
+    "type": "module",
+    "part": 2,
+    "total_parts": 2
+  }
+}

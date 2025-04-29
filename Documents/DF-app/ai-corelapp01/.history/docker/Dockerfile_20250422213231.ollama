@@ -1,0 +1,10 @@
+FROM ollama/ollama:latest
+
+# Kopieer het initialisatie script
+COPY docker/ollama-init.sh /ollama-init.sh
+
+# Maak het script uitvoerbaar
+RUN chmod +x /ollama-init.sh
+
+# Start Ollama met een correcte shell opdracht
+CMD ollama serve & sleep 10 && /ollama-init.sh && wait 

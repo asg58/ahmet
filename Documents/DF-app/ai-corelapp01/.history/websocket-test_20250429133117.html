@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blender WebSocket Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .output { background: #f4f4f4; border: 1px solid #ddd; padding: 10px; height: 300px; overflow-y: auto; margin: 10px 0; }
+        .controls { margin: 10px 0; }
+        button { padding: 8px 12px; margin-right: 10px; }
+        textarea { width: 100%; height: 100px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>Blender WebSocket Test</h1>
+    <div class="controls">
+        <button id="connect">Connect</button>
+        <button id="disconnect" disabled>Disconnect</button>
+        <span id="status">Disconnected</span>
+    </div>
+    
+    <h3>Python Code to Execute</h3>
+    <textarea id="code">import bpy
+print("Blender version:", bpy.app.version_string)
+print("Active objects:", [obj.name for obj in bpy.context.scene.objects])</textarea>
+    
+    <div class="controls">
+        <button id="send" disabled>Execute Code</button>
+        <button id="ping" disabled>Ping</button>
+    </div>
+    
+    <h3>Output</h3>
+    <div id="output" class="output"></div>
+    
+    <script>
+        let ws = null;
+        const outputDiv = document.getElementById('output');
+        const statusSpan = document.getElementById('status');
+        const codeTextarea = document.getElementById('code');
+        const connectBtn = document.getElementById('connect');
+        const disconnectBtn = document.getElementById('disconnect');
+        const sendBtn = document.getElementById('send');
+        const pingBtn = document.getElementById('ping');
+        
+        function log(message) {
+            const line = document.createElement('div');
+            line.textContent = message;
+            outputDiv.appendChild(line);
+            outputDiv.scrollTop = outputDiv.scrollHeight;
+        }
+        
+        function connect() {
+            try {
+                ws = new WebSocket('ws://localhost:4202');
+                
+                ws.onopen = function() {
+                    log('Connected to Blender WebSocket server');
+                    statusSpan.textContent = 'Connected';
+                    connectBtn.disabled = true;
+                    disconnectBtn.disabled = false;
+                    sendBtn.disabled = false;
+                    pingBtn.disabled = false;
+                };
+                
+                ws.onmessage = function(event) {
+                    log('Received: ' + event.data);
+                    const data = JSON.parse(event.data);
+                    if (data.type === 'pong') {
+                        log('Ping response: ' + (new Date(data.timestamp * 1000).toISOString()));
+                    }
+                };
+                
+                ws.onclose = function() {
+                    log('Connection closed');
+                    statusSpan.textContent = 'Disconnected';
+                    connectBtn.disabled = false;
+                    disconnectBtn.disabled = true;
+                    sendBtn.disabled = true;
+                    pingBtn.disabled = true;
+                };
+                
+                ws.onerror = function(error) {
+                    log('Error: ' + error);
+                };
+            } catch (error) {
+                log('Connection error: ' + error.message);
+            }
+        }
+        
+        function disconnect() {
+            if (ws) {
+                ws.close();
+                ws = null;
+            }
+        }
+        
+        function sendCode() {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                const code = codeTextarea.value;
+                const message = {
+                    command: 'execute',
+                    code: code
+                };
+                log('Sending code: ' + code.substring(0, 30) + '...');
+                ws.send(JSON.stringify(message));
+            } else {
+                log('Not connected to server');
+            }
+        }
+        
+        function sendPing() {
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                const message = {
+                    command: 'ping'
+                };
+                log('Sending ping');
+                ws.send(JSON.stringify(message));
+            } else {
+                log('Not connected to server');
+            }
+        }
+        
+        connectBtn.addEventListener('click', connect);
+        disconnectBtn.addEventListener('click', disconnect);
+        sendBtn.addEventListener('click', sendCode);
+        pingBtn.addEventListener('click', sendPing);
+    </script>
+</body>
+</html> 

@@ -1,0 +1,11 @@
+{
+  "text": "# Application\n\nThe CorelDRAW application object.\n\n## Properties\n\n### ActiveDocument\nReturns the active document.\n\n### Documents\nReturns the collection of open documents.\n\n## Methods\n\n### Quit\nQuits the application.\n\n### CreateDocument\nCreates a new document.\n\n",
+  "metadata": {
+    "title": "Application",
+    "source": "simulated",
+    "platform": "coreldraw",
+    "type": "class",
+    "part": 1,
+    "total_parts": 1
+  }
+}

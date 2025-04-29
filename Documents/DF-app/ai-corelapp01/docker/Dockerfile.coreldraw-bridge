@@ -1,0 +1,23 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Install dependencies
+COPY integrations/coreldraw/package*.json ./
+RUN npm install
+
+# Copy application code
+COPY integrations/coreldraw/src ./src
+COPY integrations/coreldraw/tsconfig.json ./
+
+# Set environment variables
+ENV NODE_ENV=development
+ENV PORT=4500
+ENV HOST=0.0.0.0
+ENV MOCK_MODE=true
+
+# Expose port
+EXPOSE 4500
+
+# Start the server
+CMD ["npm", "run", "start"]

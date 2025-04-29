@@ -1,0 +1,174 @@
+import asyncio
+import websockets
+import ujson
+import time
+import threading
+from typing import Dict, Any
+import uuid
+import traceback
+
+async def websocket_handler(websocket, path):
+    """Verwerk WebSocket verbindingen"""
+    client_id = str(uuid.uuid4())
+    logger.info(f"Nieuwe WebSocket client verbonden: {client_id}")
+    
+    with websocket_lock:
+        websocket_clients.add(websocket)
+    
+    try:
+        # Stuur initiële status
+        await websocket.send(ujson.dumps({
+            "type": "status",
+            "data": {
+                "connected": True,
+                "blender_running": is_blender_running(),
+                "mode": "mock" if MOCK_MODE else "real",
+                "version": get_blender_version() or "Onbekend"
+            }
+        }))
+        
+        # Luister naar berichten
+        async for message in websocket:
+            try:
+                # Parse bericht
+                data = ujson.loads(message)
+                command = data.get("command")
+                
+                logger.info(f"WebSocket bericht ontvangen: {command}")
+                
+                # Update status
+                execution_status["last_command"] = command
+                execution_status["running"] = True
+                
+                # Stuur status update naar alle clients
+                await broadcast_status("processing", {"command": command})
+                
+                if command == "ping":
+                    await websocket.send(ujson.dumps({
+                        "type": "pong",
+                        "timestamp": time.time()
+                    }))
+                
+                elif command == "execute":
+                    code = data.get("code", "")
+                    if not code:
+                        raise ValueError("Geen code opgegeven")
+                    
+                    # Voer code uit in aparte thread
+                    result = None
+                    
+                    def execute_code_thread():
+                        nonlocal result
+                        result = execute_python_in_blender(code)
+                    
+                    thread = threading.Thread(target=execute_code_thread)
+                    thread.start()
+                    thread.join(timeout=60)  # Wacht maximaal 60 seconden
+                    
+                    if thread.is_alive():
+                        # Timeout
+                        logger.warning("Timeout bij uitvoeren code via WebSocket")
+                        result = {
+                            "success": False,
+                            "error": "Timeout bij uitvoeren van code na 60 seconden"
+                        }
+                    
+                    # Resultaat sturen
+                    if result["success"]:
+                        execution_status["success_count"] += 1
+                        await websocket.send(ujson.dumps({
+                            "type": "result",
+                            "success": True,
+                            "data": result
+                        }))
+                    else:
+                        execution_status["error_count"] += 1
+                        await websocket.send(ujson.dumps({
+                            "type": "result",
+                            "success": False,
+                            "error": result.get("error", "Onbekende fout"),
+                            "data": result
+                        }))
+                
+                # Update status
+                execution_status["running"] = False
+                execution_status["last_execution_time"] = time.time()
+                
+                # Stuur status update naar alle clients
+                await broadcast_status("idle", {"command": command, "completed": True})
+                
+            except Exception as e:
+                logger.error(f"Fout bij verwerken WebSocket bericht: {e}")
+                logger.error(traceback.format_exc())
+                
+                # Stuur foutmelding
+                await websocket.send(ujson.dumps({
+                    "type": "error",
+                    "error": str(e)
+                }))
+                
+                # Update status
+                execution_status["running"] = False
+                execution_status["error_count"] += 1
+                
+                # Stuur status update naar alle clients
+                await broadcast_status("error", {"error": str(e)})
+    
+    except websockets.exceptions.ConnectionClosed:
+        logger.info(f"WebSocket verbinding gesloten: {client_id}")
+    except Exception as e:
+        logger.error(f"Fout in websocket handler: {e}")
+    finally:
+        # Verwijder client uit lijst
+        with websocket_lock:
+            websocket_clients.discard(websocket)
+        logger.info(f"WebSocket client verwijderd: {client_id}")
+
+async def broadcast_status(status: str, data: Dict[str, Any] = None):
+    """
+    Stuur een status update naar alle verbonden WebSocket clients
+    """
+    if not data:
+        data = {}
+    
+    message = ujson.dumps({
+        "type": "status_update",
+        "status": status,
+        "timestamp": time.time(),
+        "data": data
+    })
+    
+    with websocket_lock:
+        if not websocket_clients:
+            return
+        
+        # Stuur naar alle clients
+        websockets_to_remove = set()
+        for client in websocket_clients:
+            try:
+                # We gebruiken create_task om te voorkomen dat één trage client de broadcast blokkeert
+                asyncio.create_task(client.send(message))
+            except:
+                # Als er een fout is, markeer de client voor verwijdering
+                websockets_to_remove.add(client)
+        
+        # Verwijder clients die een fout gaven
+        for client in websockets_to_remove:
+            websocket_clients.discard(client)
+
+async def start_websocket_server():
+    """Start the WebSocket server"""
+    global ws_server
+    
+    logger.info(f"Starting WebSocket server on ws://{HOST}:{WEBSOCKET_PORT}")
+    
+    try:
+        # Create WebSocket server immediately without checking port
+        # The port check was causing issues when running in Docker
+        ws_server = await websockets.serve(websocket_handler, HOST, WEBSOCKET_PORT)
+        
+        # Keep the server running
+        await asyncio.Future()  # run forever
+    except Exception as e:
+        logger.error(f"Failed to start WebSocket server: {e}")
+        # Don't propagate the exception to avoid crashing the main app 

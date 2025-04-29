@@ -1,0 +1,11 @@
+{
+  "text": "# bpy.context\n\nThe context object provides access to the current scene's data.\n\n## Properties\n\n### active_object\nThe currently active object.\n\n### selected_objects\nA collection of all the selected objects.\n\n",
+  "metadata": {
+    "title": "bpy.context",
+    "source": "simulated",
+    "platform": "blender",
+    "type": "module",
+    "part": 1,
+    "total_parts": 1
+  }
+}

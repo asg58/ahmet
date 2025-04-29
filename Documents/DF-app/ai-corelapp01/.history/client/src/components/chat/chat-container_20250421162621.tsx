@@ -1,0 +1,145 @@
+import React, { useState, useEffect, useRef } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+import { ChatMessage } from './chat-message'
+import { ChatInput } from './chat-input'
+import { socketClient, ChatMessage as ChatMessageType, StreamingResponse } from '@/lib/socket-client'
+
+export interface ChatContainerProps {
+  initialMessages?: ChatMessageType[]
+  sessionId?: string
+}
+
+const ChatContainer: React.FC<ChatContainerProps> = ({
+  initialMessages = [],
+  sessionId = uuidv4(),
+}) => {
+  const [messages, setMessages] = useState<ChatMessageType[]>(initialMessages)
+  const [input, setInput] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [connectionStatus, setConnectionStatus] = useState({ connected: false })
+  const messagesEndRef = useRef<HTMLDivElement>(null)
+
+  // Connect to WebSocket on component mount
+  useEffect(() => {
+    socketClient.connect()
+    
+    // Register handlers
+    const unsubscribeMessage = socketClient.onMessage(handleIncomingMessage)
+    const unsubscribeConnection = socketClient.onConnectionChange(setConnectionStatus)
+    
+    // Cleanup on unmount
+    return () => {
+      unsubscribeMessage()
+      unsubscribeConnection()
+    }
+  }, [])
+
+  // Scroll to bottom when messages change
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages])
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  // Handle incoming streamed messages
+  const handleIncomingMessage = (response: StreamingResponse) => {
+    setMessages(prevMessages => {
+      // Check if this is updating an existing message
+      const messageIndex = prevMessages.findIndex(
+        msg => msg.id === response.messageId
+      )
+      
+      if (messageIndex >= 0) {
+        // Update existing message
+        const updatedMessages = [...prevMessages]
+        updatedMessages[messageIndex] = {
+          ...updatedMessages[messageIndex],
+          content: response.content
+        }
+        
+        // If message is complete, end loading state
+        if (response.isComplete) {
+          setIsLoading(false)
+        }
+        
+        return updatedMessages
+      } else {
+        // Create new message
+        const newMessage: ChatMessageType = {
+          id: response.messageId,
+          role: 'assistant',
+          content: response.content,
+          timestamp: new Date()
+        }
+        
+        // If message is complete, end loading state
+        if (response.isComplete) {
+          setIsLoading(false)
+        }
+        
+        return [...prevMessages, newMessage]
+      }
+    })
+  }
+
+  // Handle sending a message
+  const handleSubmit = (e?: React.FormEvent) => {
+    e?.preventDefault()
+    
+    if (!input.trim() || isLoading) {
+      return
+    }
+    
+    // Create user message
+    const userMessage: ChatMessageType = {
+      id: uuidv4(),
+      role: 'user',
+      content: input.trim(),
+      timestamp: new Date()
+    }
+    
+    // Add user message to chat
+    setMessages(prev => [...prev, userMessage])
+    
+    // Clear input and set loading
+    setInput('')
+    setIsLoading(true)
+    
+    // Send message to server
+    socketClient.sendMessage(userMessage.content, sessionId)
+  }
+
+  return (
+    <div className="flex flex-col h-full w-full">
+      {/* Connection status indicator */}
+      {!connectionStatus.connected && (
+        <div className="bg-red-500 text-white px-4 py-2 text-center">
+          Niet verbonden met de server. Probeer later opnieuw.
+        </div>
+      )}
+      
+      {/* Chat messages */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        {messages.map(message => (
+          <ChatMessage key={message.id} {...message} />
+        ))}
+        <div ref={messagesEndRef} />
+      </div>
+      
+      {/* Chat input */}
+      <div className="p-4 border-t">
+        <ChatInput 
+          input={input} 
+          setInput={setInput} 
+          onSubmit={handleSubmit}
+          isLoading={isLoading}
+          placeholder="Type je bericht..."
+        />
+      </div>
+    </div>
+  )
+}
+
+export default ChatContainer 

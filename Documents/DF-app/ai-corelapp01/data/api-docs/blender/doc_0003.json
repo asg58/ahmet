@@ -1,0 +1,11 @@
+{
+  "text": "Apart from add-ons, there are several other types of scripts that extend Blenderâs functionality: Utility libraries for import into other scripts. Settings for Blenderâs tools and key configurations. These files are imported when starting Blender. They define most of Blenderâs UI, as well as some additional core operators. In contrast to add-ons, they are typically intended for one-time execution via the Text Editor. All scripts are loaded from the scripts folder of the local, system and user paths. python scripts  You can setup an additional search path for scripts in File Paths Preferences â File Paths. Add-ons are conveniently installed through Blender in the Preferences. Click the Installâ button and select the .zip file. python .zip  - View Source - View Translation - Report issue on this page",
+  "metadata": {
+    "title": "Introduction - Blender 4.4 Manual",
+    "source": "https://docs.blender.org/manual/en/latest/advanced/scripting/introduction.html",
+    "platform": "blender",
+    "type": "general",
+    "part": 3,
+    "total_parts": 3
+  }
+}

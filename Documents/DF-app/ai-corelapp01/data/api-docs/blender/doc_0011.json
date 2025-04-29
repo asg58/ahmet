@@ -1,0 +1,11 @@
+{
+  "text": "Operators (bpy.ops) - Blender Python API Documentation python {'RUNNING_MODAL', 'CANCELLED', 'FINISHED', 'PASS_THROUGH'}  python {'FINISHED'}  python {'CANCELLED'}  python RuntimeError  python mesh.subdivide  python bpy.ops  python bpy.ops.test.operator(execution_context, undo)  python str  python bool  python import bpy  calling an operator bpy.ops.mesh.subdivide(number_cuts3, smoothness0.5)  check poll() to avoid exception. if bpy.ops.object.mode_set.poll(): bpy.ops.object.mode_set(mode'EDIT')  python bpy.context  python bpy.context.active_object  python active_objectobject  python bpy.types.Context.temp_override  python  Remove all objects in scene rather than the selected ones. import bpy from bpy import context context_override  context.copy() context_override[\"selected_objects\"]  list(context.scene.objects) with context.temp_override(context_override): bpy.ops.object.delete()  python EXEC_DEFAULT  python execute()  python INVOKE_DEFAULT  python INVOKE_DEFAULT  python INVOKE_REGION_WIN  python INVOKE_REGION_CHANNELS  python INVOKE_REGION_PREVIEW  python INVOKE_AREA  python INVOKE_SCREEN  python EXEC_DEFAULT  python EXEC_REGION_WIN  python EXEC_REGION_CHANNELS  python EXEC_REGION_PREVIEW  python EXEC_AREA  python EXEC_SCREEN  python  collection add popup import bpy bpy.ops.object.collection_instance_add('INVOKE_DEFAULT')  python  Maximize 3d view in all windows.",
+  "metadata": {
+    "title": "Operators (bpy.ops) - Blender Python API",
+    "source": "https://docs.blender.org/api/current/bpy.ops.html",
+    "platform": "blender",
+    "type": "module",
+    "part": 1,
+    "total_parts": 2
+  }
+}

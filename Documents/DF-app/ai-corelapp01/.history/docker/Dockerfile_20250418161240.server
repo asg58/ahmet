@@ -1,0 +1,18 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copy package.json en package-lock.json
+COPY package*.json ./
+
+# Installeer dependencies
+RUN npm install
+
+# Kopieer de rest van de applicatie
+COPY . .
+
+# Expose ports voor REST API en WebSockets
+EXPOSE 4000 4001
+
+# Start de applicatie
+CMD ["npm", "run", "dev"] 

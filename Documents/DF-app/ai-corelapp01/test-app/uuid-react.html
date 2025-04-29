@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UUID with React</title>
+    <!-- React -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- UUID -->
+    <script src="https://cdn.jsdelivr.net/npm/uuid@9.0.1/dist/index.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .result {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-family: monospace;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .uuid-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .uuid-list li {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        
+        function UuidApp() {
+            const [uuids, setUuids] = useState([]);
+            
+            const generateUuid = () => {
+                const newUuid = window.uuid.v4();
+                setUuids(prevUuids => [...prevUuids, newUuid]);
+            };
+            
+            useEffect(() => {
+                // Generate one UUID on load
+                generateUuid();
+            }, []);
+            
+            const clearUuids = () => {
+                setUuids([]);
+            };
+            
+            return (
+                <div>
+                    <h1>UUID with React</h1>
+                    <p>This demonstrates using the UUID library with React.</p>
+                    
+                    <div>
+                        <button onClick={generateUuid}>Generate UUID</button>
+                        <button onClick={clearUuids}>Clear All</button>
+                    </div>
+                    
+                    <h3>Generated UUIDs:</h3>
+                    {uuids.length > 0 ? (
+                        <ul className="uuid-list">
+                            {uuids.map((uuid, index) => (
+                                <li key={index}>{uuid}</li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <p>No UUIDs generated yet.</p>
+                    )}
+                </div>
+            );
+        }
+        
+        ReactDOM.render(<UuidApp />, document.getElementById('root'));
+    </script>
+</body>
+</html> 

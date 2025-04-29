@@ -1,0 +1,11 @@
+{
+  "text": "# Document\n\nRepresents a CorelDRAW document.\n\n## Properties\n\n### ActivePage\nReturns the active page.\n\n### Pages\nReturns the collection of pages.\n\n## Methods\n\n### Save\nSaves the document.\n\n### Export\nExports the document to a different format.\n\n",
+  "metadata": {
+    "title": "Document",
+    "source": "simulated",
+    "platform": "coreldraw",
+    "type": "class",
+    "part": 1,
+    "total_parts": 1
+  }
+}

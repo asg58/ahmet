@@ -1,0 +1,11 @@
+{
+  "text": "reference  python selected_assets  python id  python selected_ids  python edit_image  python selected_nodes  python active_node  python visible_objects  python selectable_objects  python selected_objects  python editable_objects  python selected_editable_objects  python objects_in_mode  python objects_in_mode_unique_data  python visible_bones  python editable_bones  python selected_bones  python selected_editable_bones  python visible_pose_bones  python selected_pose_bones  python selected_pose_bones_from_active_object  python active_bone  python active_pose_bone  python active_object  python edit_object  python sculpt_object  python vertex_paint_object  python weight_paint_object  python image_paint_object  python particle_edit_object  python pose_object  python active_sequence_strip  python sequences  python selected_sequences  python selected_editable_sequences  python active_nla_track  python active_nla_strip  python selected_nla_strips  python selected_movieclip_tracks  python annotation_data  python annotation_data_owner  python active_annotation_layer  python active_operator  python active_action  python selected_visible_actions  python selected_editable_actions  python visible_fcurves  python editable_fcurves  python selected_visible_fcurves  python selected_editable_fcurves  python active_editable_fcurve  python selected_editable_keyframes  python ui_list  python property  python active_strip  python strips  python selected_strips  python selected_editable_strips  py",
+  "metadata": {
+    "title": "Context Access (bpy.context) - Blender Python API",
+    "source": "https://docs.blender.org/api/current/bpy.context.html",
+    "platform": "blender",
+    "type": "module",
+    "part": 5,
+    "total_parts": 6
+  }
+}

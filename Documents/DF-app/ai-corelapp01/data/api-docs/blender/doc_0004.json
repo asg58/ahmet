@@ -1,0 +1,11 @@
+{
+  "text": "Context Access (bpy.context) - Blender Python API Documentation python bpy.types.Area  python bpy.types.AssetRepresentation  python bpy.types.BlendData  python bpy.types.Collection  python bpy.types.GizmoGroup  python bpy.types.LayerCollection  python bpy.types.Preferences  python bpy.types.Region  python bpy.types.RegionView3D  python bpy.types.Region  python bpy.types.Scene  python bpy.types.Screen  python bpy.types.Space  python bpy.types.ToolSettings  python bpy.types.ViewLayer  python bpy.types.Window  python bpy.types.WindowManager  python bpy.types.WorkSpace  python bpy.types.TextureSlot  python bpy.types.Scene  python bpy.types.World  python bpy.types.Object  python bpy.types.Mesh  python bpy.types.Armature  python bpy.types.Lattice  python bpy.types.Curve  python bpy.types.MetaBall  python bpy.types.Light  python bpy.types.Speaker  python bpy.types.LightProbe  python bpy.types.Camera  python bpy.types.Material  python bpy.types.MaterialSlot  python bpy.types.Texture  python bpy.types.ID  python bpy.types.Property  python bpy.types.Node  python bpy.types.Bone  python bpy.types.EditBone  python bpy.types.PoseBone  python bpy.types.ParticleSystem  python bpy.types.ParticleSystem  python bpy.types.ParticleSettings  python bpy.types.ClothModifier  python bpy.types.SoftBodyModifier  python bpy.types.FluidSimulationModifier  python bpy.types.CollisionModifier  python bpy.types.Brush  python bpy.types.DynamicPaintModifier  python bpy.types.FreestyleLineStyle  python bpy.type",
+  "metadata": {
+    "title": "Context Access (bpy.context) - Blender Python API",
+    "source": "https://docs.blender.org/api/current/bpy.context.html",
+    "platform": "blender",
+    "type": "module",
+    "part": 1,
+    "total_parts": 6
+  }
+}

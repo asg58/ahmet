@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  blender-bridge:
+    build:
+      context: .
+      dockerfile: Dockerfile.blender
+    container_name: blender_headless_bridge
+    ports:
+      - "4201:4201"  # REST API
+      - "4202:4202"  # WebSocket
+    environment:
+      - PORT=4201
+      - WEBSOCKET_PORT=4202
+      - HOST=0.0.0.0
+      - LOG_LEVEL=INFO
+      - DEBUG=false
+      - MOCK_BLENDER=false  # We gebruiken nu een echte Blender instantie
+    volumes:
+      - ./app:/app
+      - ./logs:/app/logs
+    restart: unless-stopped 

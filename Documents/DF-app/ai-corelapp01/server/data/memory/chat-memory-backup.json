@@ -1,0 +1,1268 @@
+[
+  {
+    "sessionId": "2263d110-25e2-4509-89cb-e937fb68a5f4",
+    "timestamp": "2025-04-22T12:56:47.561Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hallo"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T12:56:39.324Z",
+      "timestamp": "2025-04-22T12:56:47.561Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "ad6aff04-09b2-44b4-a995-2d02512afab3",
+    "timestamp": "2025-04-22T12:57:30.210Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T12:57:30.210Z"
+    }
+  },
+  {
+    "sessionId": "ed821035-2b02-4ee9-8451-892a9131af84",
+    "timestamp": "2025-04-22T13:01:16.208Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hello"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T13:00:54.245Z",
+      "timestamp": "2025-04-22T13:01:16.208Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "d276dc19-75f9-411a-a790-ba5e0a8faf76",
+    "timestamp": "2025-04-22T13:05:01.231Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hi"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T13:04:56.291Z",
+      "timestamp": "2025-04-22T13:05:01.231Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "52c55fcf-eec5-494d-80da-0a5acb46948b",
+    "timestamp": "2025-04-22T13:13:22.621Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hello"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T13:13:18.845Z",
+      "timestamp": "2025-04-22T13:13:22.621Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "2be7e3de-7365-446f-850f-84f486ccc628",
+    "timestamp": "2025-04-22T13:28:58.022Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hallo"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T13:28:54.315Z",
+      "timestamp": "2025-04-22T13:28:58.022Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "bb6449be-9370-4d4f-bba3-879c436f7079",
+    "timestamp": "2025-04-22T13:32:19.840Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hello"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T13:32:00.536Z",
+      "timestamp": "2025-04-22T13:32:19.840Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "fb23fa10-bbf5-47d4-a5ba-d073071ee239",
+    "timestamp": "2025-04-22T13:32:37.669Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hello"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T13:32:28.102Z",
+      "timestamp": "2025-04-22T13:32:37.669Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "a2b49594-245a-4491-881d-f377153a9bd4",
+    "timestamp": "2025-04-22T13:33:58.352Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hello"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T13:33:52.025Z",
+      "timestamp": "2025-04-22T13:33:58.352Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "ddd2bf48-d28c-4343-b06c-e20cf910a720",
+    "timestamp": "2025-04-22T13:39:24.281Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hello"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T13:39:19.002Z",
+      "timestamp": "2025-04-22T13:39:24.281Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "test-session",
+    "timestamp": "2025-04-29T12:24:54.429Z",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Hello, how are you?"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      },
+      {
+        "role": "user",
+        "content": "Hello, can you help me?"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      },
+      {
+        "role": "user",
+        "content": "Hello, can you help me?"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      },
+      {
+        "role": "user",
+        "content": "Hello, can you help me?"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "timestamp": "2025-04-29T12:24:54.429Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "test-session2",
+    "timestamp": "2025-04-22T13:41:23.802Z",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Hello, how are you?"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "timestamp": "2025-04-22T13:41:23.802Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "test-session3",
+    "timestamp": "2025-04-22T13:47:57.745Z",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Hello, how are you?"
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! I'm doing great, thanks for asking. I'm your AI-assistent designed to help you with CorelDRAW and Blender tasks. What brings you here today? Do you have a specific project in mind or would you like some inspiration? Let me know how I can assist you."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "timestamp": "2025-04-22T13:47:57.745Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "test-session4",
+    "timestamp": "2025-04-22T13:51:45.636Z",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Can you help me create a 3D cube in Blender?"
+      },
+      {
+        "role": "assistant",
+        "content": "I'd be happy to help you with that! Creating a 3D cube in Blender is a great starting point for any 3D modeling project.\n\nTo get started, I'll need to open up Blender and create the cube for you. Can you please confirm if you want the cube to have a specific size or dimensions? Also, would you like it to be a perfect cube (i.e., all sides are equal) or do you want some variation in the dimensions?\n\nYou can respond with something like \"Make a 10x10x10 cube\" or \"Create a cube with sides of 5 units and 8 units.\" Let me know, and I'll take care of the rest!"
+      },
+      {
+        "role": "user",
+        "content": "Ja, graag! Plaats de kubus in het midden van de workspace en maak hem ongeveer 2x2x2 units groot. Kun je ook de kubus een rode kleur geven?"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "timestamp": "2025-04-22T13:51:45.636Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "a06116c2-efbd-41ec-8201-12052a762d21",
+    "timestamp": "2025-04-22T13:53:05.801Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "kan je een cubus maken in blender "
+      },
+      {
+        "role": "assistant",
+        "content": "Je wilt een cube creëren in Blender, dat's een excellent begin!\n\nJa, ik kan dat voor je doen. Om een cube te maken in Blender, geef ik je de volgende commando's:\n\n1. Open Blender en ga naar het 'Object' menu.\n2. Selecteer 'Mesh' en klik op 'Cube'.\n3. Klik op de 'Create' knop om de cube te creëren.\n\nAls je wilt, kan ik ook een voorbeeld van een cube maken en het model in de workspace plaatsen. Wil je dat?\n\nHoe reageer jij?"
+      },
+      {
+        "role": "user",
+        "content": "ja maak maar "
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      },
+      {
+        "role": "user",
+        "content": "kaak n een kubus in blender en plaats midden inde workspace"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T13:50:21.501Z",
+      "timestamp": "2025-04-22T13:53:05.801Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "e27068ec-25c8-46a8-9fd1-a4aa6e473414",
+    "timestamp": "2025-04-22T13:55:18.505Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "maak een cubus in blender en en plaats in de midden van de dashboard "
+      },
+      {
+        "role": "assistant",
+        "content": "I'd be happy to help you with that!\n\nTo create a cube and place it in the middle of your dashboard, I'll give you some step-by-step instructions. Please follow along:\n\n1. Open Blender: First, open Blender on your computer. If you need help finding the software or opening it, just let me know!\n2. Create a new project: Once Blender is open, create a new project by clicking on \"File\" > \"New\" > \"Blank Project\". This will give us a clean slate to work with.\n3. Add a cube: To add a cube, go to the \"Objects\" menu and select \"Cube\" from the list. You can also use the shortcut key \"Ctrl + Shift + C\" (Windows) or \"Cmd + Shift + C\" (Mac) to create a new cube.\n4. Scale the cube: By default, the cube is quite small. To scale it up, go to the \"Object Properties\" panel and adjust the \"Scale\" values to your liking. You can also use the shortcut key \"R\" to scale the cube manually.\n5. Position the cube: Now that we have our cube, let's place it in the middle of the dashboard. To do this, select the cube and go to the \"Transform\" panel. Adjust the \"X\", \"Y\", and \"Z\" position values so that the cube sits comfortably in the center of your dashboard.\n6. Finalize: Once you're happy with the placement of your cube, you can save your project by clicking on \"File\" > \"Save As\". Give it a name and choose a location to save it.\n\nThat's it! You now have a cube placed in the middle of your dashboard in Blender. If you need any further assistance or have questions about specific steps, feel free to ask!\n\nWould you like me to help with anything else, such as adding more objects, changing materials, or animating your scene?"
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T13:53:30.232Z",
+      "timestamp": "2025-04-22T13:55:18.505Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "216cbd35-5acf-42e0-9fd5-2b85739849ca",
+    "timestamp": "2025-04-22T14:00:47.658Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "maak een circel in blender me een diamaet van 50 cm in rood "
+      },
+      {
+        "role": "assistant",
+        "content": "Een eenvoudige maar handige vraag!\n\nOm een cirkel te maken met Blender, kan ik het volgende doen:\n\n1. Open Blender en begin een nieuw project.\n2. Klik op de \"Object Mode\" knop om in objectmodus te komen.\n3. Klik op de \"Circle\" button (of druk F6) om een cirkel te laten ontstaan.\n4. Geef de cirkel een diameter van 50 cm door het volgende commando uit te voeren: `Scale(0, 1, 50/100)`.\n\nOm de cirkel rood te kleuren, kan ik het volgende doen:\n\n5. Klik op de \"Material\" button (of druk F5) om in materiaalmodus te komen.\n6. Selecteer de \"Principled BSDF\" material en stel de \"Color\" eigenschap in op een rode kleur door het volgende commando uit te voeren: ` Color(1, 0, 0)` (dit is de RGB-waarde voor rood).\n\nEn nu heb je een cirkel met een diameter van 50 cm en een rode kleur!\n\nHou ik je bij als je meer vragen hebt of wilt dat ik nog andere taken uitvoer in Blender."
+      },
+      {
+        "role": "user",
+        "content": "kan je je connectie controleren met blender, je hebt websocket met blender "
+      },
+      {
+        "role": "assistant",
+        "content": "As a CorelDRAW and Blender AI assistant, I am connected to Blender through a WebSocket connection. This allows me to send and receive commands and data directly with Blender.\n\nTo confirm my connection with Blender, I can use the following command:\n\n`blender.get_info()`\n\nThis command will retrieve information about the current Blender session, including the version number, the type of file being edited (e.g., 3D model, video sequence), and the list of active objects in the scene.\n\nIf everything is working properly, this command should return a response with the requested information. If there's an issue with my connection or the WebSocket link, I'll let you know so we can troubleshoot together!"
+      },
+      {
+        "role": "user",
+        "content": "ok maake nu een cirkel met gebruik van deze verdinging. om rechsteeks in blender cirkel te maken . geen uitleg geven "
+      },
+      {
+        "role": "assistant",
+        "content": "`circle = bpy.ops.mesh.primitive_circle_add(radius=25, location=(0, 0, 0))`"
+      },
+      {
+        "role": "user",
+        "content": "ik zie gen cirkel in blender "
+      },
+      {
+        "role": "assistant",
+        "content": "I apologize for the confusion!\n\nLet me try again. Here's a command to create a circle with a diameter of 50 cm:\n\n`circle = bpy.ops.mesh.primitive_circle_add(radius=25, location=(0, 0, 0), sides=32)`\n\nThis should create a circle with 32 sides and a radius of 25 units, which is equivalent to a diameter of 50 cm.\n\nPlease try this command again, and let me know if the circle appears in Blender."
+      },
+      {
+        "role": "user",
+        "content": "je moet je verbinging met blender gebruiken om een circel te maken in blender"
+      },
+      {
+        "role": "assistant",
+        "content": "I apologize for my mistake earlier!\n\nTo create a circle with a diameter of 50 cm using my WebSocket connection to Blender, I can use the following command:\n\n`blender.circle(radius=25, location=(0, 0, 0))`\n\nThis command should create a circle with a radius of 25 units, which is equivalent to a diameter of 50 cm.\n\nPlease let me know if this command works correctly and creates the desired circle in Blender."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T13:55:55.364Z",
+      "timestamp": "2025-04-22T14:00:47.658Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "968f0586-78e9-4cfa-abdc-dc78d6b87f31",
+    "timestamp": "2025-04-22T14:04:19.166Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "maak een circel in coreldraw"
+      },
+      {
+        "role": "assistant",
+        "content": "Een eenvoudig maar leuke opdracht!\n\nKomen we tot het werk...\n\nOm een cirkel te maken in CorelDRAW, typ je gewoon de volgende commando's:\n\n1. Open CorelDRAW en koppel je aan een nieuwe pagina door op \"File\" > \"New\" > \"Blank Page\" te klikken.\n2. Selecteer het gereedschap \"Ellipse Tool\" (of druk op F7) om een cirkel te maken.\n3. Klik met de muis waar je de cirkel wilt plaatsen en hou de linkermuisknop ingedrukt terwijl je de muis beweegt om de cirkel te vormen.\n4. Om de cirkel te laten groeien, draai je de \"Radius\" slider in het menu \"Properties\" (of druk op F9) of gebruik de toetscombinatie Ctrl + Shift + E.\n\nEn dat is het! Je hebt nu een cirkel gemaakt in CorelDRAW."
+      },
+      {
+        "role": "user",
+        "content": "kan je rechsteek in coreldrw een circel maken "
+      },
+      {
+        "role": "assistant",
+        "content": "Een eenvoudige opdracht met een twist!\n\nOm een cirkel te maken in CorelDRAW via het gereedschap \"Rectangle Tool\" (of druk op F4), volg deze stappen:\n\n1. Open CorelDRAW en koppel je aan een nieuwe pagina door op \"File\" > \"New\" > \"Blank Page\" te klikken.\n2. Selecteer het gereedschap \"Rectangle Tool\" (of druk op F4) om een rechthoek te maken.\n3. Klik met de muis waar je de cirkel wilt plaatsen en hou de linkermuisknop ingedrukt terwijl je de muis beweegt om de cirkel te vormen.\n4. Om de cirkel precies te laten zijn, druk je op de toets F9 om het menu \"Properties\" te openen en stel je de waarde van \"Width\" en \"Height\" gelijk op elkaar (bijvoorbeeld beide op 100).\n5. Klik met de rechtermuisknop op de cirkel om de \"Edit Ellipse\" optie te selecteren.\n\nEn dat is het! Je hebt nu een cirkel gemaakt in CorelDRAW via het gereedschap \"Rectangle Tool\"."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T14:01:21.991Z",
+      "timestamp": "2025-04-22T14:04:19.166Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "943d6475-0adb-4f49-a706-b6e74fc1ac6f",
+    "timestamp": "2025-04-22T15:20:27.848Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "maak een cubus in blender met een dia meter van 400mm "
+      },
+      {
+        "role": "assistant",
+        "content": "A great start! Let's get creative with Blender!\n\nTo create a cube in Blender with a diameter of 400mm, you can follow these steps:\n\n1. Open Blender and navigate to the \"Object Mode\" by pressing `Tab`.\n2. Click on the `Cube` tool from the toolbar or press `Shift + A` and select \"Primitive\" > `Cube` from the menu.\n3. In the Properties panel (or by pressing `N`), you can find the dimensions of the cube. Set the X, Y, and Z values to 400mm each.\n\nAlternatively, you can also use a shortcut:\n\n* Press `Ctrl + Shift + C` to create a new cube with the default size.\n* Then, press `F6` to access the \"Scale\" tool.\n* Enter the value of 400 in the X, Y, and Z fields, and press `Enter`.\n\nThat's it! You should now have a cube with a diameter of 400mm. If you need any further assistance or have questions about Blender, feel free to ask!"
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T15:19:36.756Z",
+      "timestamp": "2025-04-22T15:20:27.848Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "4bd5e809-38e5-4bbc-bf62-2fddee6c934d",
+    "timestamp": "2025-04-22T15:33:03.335Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "mamk een cubus in blender '"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T15:31:32.454Z",
+      "timestamp": "2025-04-22T15:33:03.335Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "b1fead82-2f8d-4443-9cec-9d8b20a3b819",
+    "timestamp": "2025-04-22T16:36:45.521Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "maak een bol van 500 mm in blender "
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T16:36:24.063Z",
+      "timestamp": "2025-04-22T16:36:45.521Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "81bd8bec-96be-4113-a688-16b950468854",
+    "timestamp": "2025-04-22T16:42:04.699Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "maak bol in blender in rood "
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T16:41:34.238Z",
+      "timestamp": "2025-04-22T16:42:04.699Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "00bfab01-701d-486f-8e8f-8a6c3fa57eb4",
+    "timestamp": "2025-04-22T16:51:54.537Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "maak een bol met dia meter van 550 in blender "
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T16:51:40.873Z",
+      "timestamp": "2025-04-22T16:51:54.537Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "59ab66d9-402a-48f8-b615-dd6c1aea5653",
+    "timestamp": "2025-04-22T16:52:10.030Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T16:52:10.030Z"
+    }
+  },
+  {
+    "sessionId": "8849595c-d485-44f3-9952-4890d0968ce0",
+    "timestamp": "2025-04-22T16:55:05.955Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T16:55:05.955Z"
+    }
+  },
+  {
+    "sessionId": "b254c7fe-c620-4242-a1c2-d511576bee92",
+    "timestamp": "2025-04-22T17:00:59.394Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "maak een bol in rrod 500 mm "
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T17:00:45.273Z",
+      "timestamp": "2025-04-22T17:00:59.394Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "b6e0a973-8f76-4bd9-a4ae-3e3e259af9cd",
+    "timestamp": "2025-04-22T17:07:11.929Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hello"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T17:07:08.241Z",
+      "timestamp": "2025-04-22T17:07:11.929Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "ca2cdd21-c141-41a1-82d3-d3ebc39ba99e",
+    "timestamp": "2025-04-22T17:08:10.542Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hello"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T17:08:06.706Z",
+      "timestamp": "2025-04-22T17:08:10.542Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "817ccc62-2f1d-4659-82ca-0ab9985401fd",
+    "timestamp": "2025-04-22T17:12:47.289Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hello"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T17:12:42.689Z",
+      "timestamp": "2025-04-22T17:12:47.289Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "79ddb954-cbd5-4d69-adfb-ee17da941c08",
+    "timestamp": "2025-04-22T17:22:24.044Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T17:22:24.044Z"
+    }
+  },
+  {
+    "sessionId": "db9e323c-57e2-4650-9183-8849a1eeaa85",
+    "timestamp": "2025-04-22T17:26:49.167Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hallo"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T17:26:43.084Z",
+      "timestamp": "2025-04-22T17:26:49.167Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "ab11bdf6-b368-43a1-b9ef-9d5771d581d5",
+    "timestamp": "2025-04-22T17:31:53.750Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hello"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T17:31:49.615Z",
+      "timestamp": "2025-04-22T17:31:53.750Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "1952acf1-f6a1-41b5-9995-e7c2bbc2dc33",
+    "timestamp": "2025-04-22T17:40:16.741Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hallo"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T17:40:11.496Z",
+      "timestamp": "2025-04-22T17:40:16.741Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "956bd149-b718-4c7c-81ba-48ca5a53e189",
+    "timestamp": "2025-04-22T17:42:23.764Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hallo"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-22T17:42:20.296Z",
+      "timestamp": "2025-04-22T17:42:23.764Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "745475a7-bb95-49df-9cc3-9a97c4cb62d3",
+    "timestamp": "2025-04-28T14:28:20.266Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hallo"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-28T14:28:05.214Z",
+      "timestamp": "2025-04-28T14:28:20.266Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "c5620ed6-0a79-4ab4-a49a-d7cf52ab391a",
+    "timestamp": "2025-04-28T14:29:04.211Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hallo"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-28T14:28:54.864Z",
+      "timestamp": "2025-04-28T14:29:04.211Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "a5e9d21d-c806-4508-8765-7d527b3db2d1",
+    "timestamp": "2025-04-29T07:08:51.804Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hello"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-29T07:08:46.998Z",
+      "timestamp": "2025-04-29T07:08:51.804Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "9a3f21c5-480f-4250-8df8-983c5951121c",
+    "timestamp": "2025-04-29T07:17:39.174Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hi"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-29T07:17:33.421Z",
+      "timestamp": "2025-04-29T07:17:39.174Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "3e440a73-fd25-4911-bb9a-a8ef7bc51fea",
+    "timestamp": "2025-04-29T11:50:47.326Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hallo"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-29T11:50:43.560Z",
+      "timestamp": "2025-04-29T11:50:47.326Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "14c361dc-6339-4156-86ff-ae677331ee41",
+    "timestamp": "2025-04-29T11:55:29.494Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-29T11:55:29.494Z"
+    }
+  },
+  {
+    "sessionId": "18d962d3-c8e3-4bb7-9587-905312d154fa",
+    "timestamp": "2025-04-29T12:12:49.508Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hello"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      },
+      {
+        "role": "user",
+        "content": "hello"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-29T12:09:50.138Z",
+      "timestamp": "2025-04-29T12:12:49.508Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "2192f7dd-18f8-4e0a-ae59-6481e8dfd1c9",
+    "timestamp": "2025-04-29T12:15:37.644Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hallo"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-29T12:15:24.454Z",
+      "timestamp": "2025-04-29T12:15:37.644Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "ee9273fc-e904-4f56-9a97-8d40b73ab829",
+    "timestamp": "2025-04-29T12:16:03.698Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hallo"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-29T12:16:00.561Z",
+      "timestamp": "2025-04-29T12:16:03.698Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "793df366-3116-4876-b217-d08be8da4fc8",
+    "timestamp": "2025-04-29T12:19:01.575Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hello"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-29T12:18:06.324Z",
+      "timestamp": "2025-04-29T12:19:01.575Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "4e4f5fc7-6b74-4268-b644-4730cbddb695",
+    "timestamp": "2025-04-29T12:19:38.087Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hello"
+      },
+      {
+        "role": "assistant",
+        "content": "I'm sorry, but there was an error processing your request. The language model service might be unavailable. Please try again later."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-29T12:19:35.548Z",
+      "timestamp": "2025-04-29T12:19:38.087Z",
+      "intent": "GENERAL",
+      "action": "respond_to_user"
+    }
+  },
+  {
+    "sessionId": "ce0212dc-0481-459c-92bf-b05b4c1e715f",
+    "timestamp": "2025-04-29T12:20:33.963Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-29T12:20:33.963Z"
+    }
+  },
+  {
+    "sessionId": "1bd2bf6a-d1fe-4919-b250-a0003caa3d0b",
+    "timestamp": "2025-04-29T12:31:22.018Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hrl"
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-29T12:31:19.704Z",
+      "timestamp": "2025-04-29T12:31:22.018Z"
+    }
+  },
+  {
+    "sessionId": "fffcc2fc-fc04-4c6e-b7f9-ba8899c8f0c7",
+    "timestamp": "2025-04-29T12:31:40.542Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hello"
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-29T12:31:37.382Z",
+      "timestamp": "2025-04-29T12:31:40.542Z"
+    }
+  },
+  {
+    "sessionId": "9cebd2e9-97df-470e-ac9b-873491853a7f",
+    "timestamp": "2025-04-29T13:02:13.376Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hallo"
+      },
+      {
+        "role": "assistant",
+        "content": " Hallo! Wat is het beeldje van de dag dat u wilt bewerken in CorelDRAW of een nieuw project dat u wil beginnen met Blender? Bied ik mijn hulp en steun aan."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-29T13:00:57.144Z",
+      "timestamp": "2025-04-29T13:02:13.376Z",
+      "intent": "GENERAL",
+      "action": "Greeting"
+    }
+  },
+  {
+    "sessionId": "370cb2aa-5bb3-4350-b560-2c7d8d56e882",
+    "timestamp": "2025-04-29T13:13:53.555Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      },
+      {
+        "role": "user",
+        "content": "hallo"
+      },
+      {
+        "role": "assistant",
+        "content": " Hallo! Welkom bij mijn assistentie-functie van CorelDRAW en Blender. Hoe kan ik je helpen vandaag? Ziet er iets niet goed op je ontwerp of is er iets specifiek dat je wilt doen in een van deze programma's? Ik ben hier om je te helpen!"
+      },
+      {
+        "role": "user",
+        "content": "kan je een kubus maken in blender "
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-29T13:02:15.001Z",
+      "timestamp": "2025-04-29T13:13:53.555Z",
+      "intent": "GENERAL",
+      "action": "GREETING"
+    }
+  },
+  {
+    "sessionId": "dc13c4b5-f625-4861-ad5a-2c3c095c65c5",
+    "timestamp": "2025-04-29T13:14:13.602Z",
+    "messages": [
+      {
+        "role": "system",
+        "content": "Je bent een AI-assistent die CorelDRAW en Blender kan aansturen via natuurlijke taalcommando's. Wees behulpzaam, beleefd en begeleid de gebruiker bij het uitvoeren van ontwerptaken."
+      }
+    ],
+    "metadata": {
+      "platform": null,
+      "createdAt": "2025-04-29T13:14:13.602Z"
+    }
+  }
+]

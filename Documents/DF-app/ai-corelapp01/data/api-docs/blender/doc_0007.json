@@ -1,0 +1,11 @@
+{
+  "text": "active_property  bpy.context.property if active_property: datablock, data_path, index  active_property datablock.keyframe_insert(data_pathdata_path, indexindex, frame1)  python bpy.types.AssetLibraryReference  python bpy.types.Strip  python bpy.types.Strip  python bpy.types.Strip  python bpy.types.Strip  python bpy.types.Mask  python bpy.types.Text  python bpy.types.Object  python bpy.types.ID  python area  python asset  python blend_data  python collection  python engine  python gizmo_group  python layer_collection  python mode  python preferences  python region  python region_data  python region_popup  python scene  python screen  python space_data  python tool_settings  python view_layer  python window  python window_manager  python workspace  python texture_slot  python world  python object  python mesh  python armature  python lattice  python curve  python meta_ball  python light  python speaker  python lightprobe  python camera  python material  python material_slot  python texture  python texture_user  python texture_user_property  python texture_node  python bone  python edit_bone  python pose_bone  python particle_system  python particle_system_editable  python particle_settings  python cloth  python soft_body  python fluid  python collision  python brush  python dynamic_paint  python line_style  python gpencil  python grease_pencil  python curves  python volume  python edit_movieclip  python edit_mask  python active_file  python selected_files  python asset_library_",
+  "metadata": {
+    "title": "Context Access (bpy.context) - Blender Python API",
+    "source": "https://docs.blender.org/api/current/bpy.context.html",
+    "platform": "blender",
+    "type": "module",
+    "part": 4,
+    "total_parts": 6
+  }
+}

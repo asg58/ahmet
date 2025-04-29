@@ -1,0 +1,35 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Installeer ontwikkeltools om native dependencies te bouwen
+RUN apk add --no-cache --virtual .build-deps \
+    build-base \
+    python3 \
+    git
+
+# Copy package.json en package-lock.json
+COPY package*.json ./
+
+# Installeer dependencies
+RUN npm install && \
+    npm install --save crypto-browserify
+
+# Kopieer de rest van de applicatie
+COPY . .
+
+# Expose ports voor REST API en WebSockets
+EXPOSE 4000 4001
+
+# Healthcheck
+HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
+    CMD wget -q --spider http://localhost:4000/api/health || exit 1
+
+# Cleanup build dependencies
+RUN apk del .build-deps
+
+# Setup environment
+ENV NODE_ENV=development
+
+# Start de applicatie
+CMD ["npm", "run", "dev"] 

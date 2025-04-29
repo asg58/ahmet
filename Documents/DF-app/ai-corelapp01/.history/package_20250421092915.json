@@ -1,0 +1,16 @@
+{
+  "name": "chat-memory-system",
+  "version": "1.0.0",
+  "description": "Systeem om chatgesprekken automatisch bij te houden",
+  "main": "auto-chat-memory.js",
+  "scripts": {
+    "start": "node auto-chat-memory.js",
+    "show": "node show-memory.js",
+    "watch": "node show-memory.js --watch"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "readline": "^1.3.0"
+  }
+}
