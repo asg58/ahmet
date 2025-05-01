@@ -25,6 +25,8 @@ export class BlenderService implements OnModuleInit, OnModuleDestroy {
   private wsEndpoint: string;
   private wsClient: WebSocket | null = null;
   private wsReconnectInterval: NodeJS.Timeout | null = null;
+  private connectionInProgress: boolean = false;
+  private connectionAttemptTimeout: NodeJS.Timeout | null = null;
   
   constructor(
     private readonly configService: ConfigService,
@@ -65,6 +67,12 @@ export class BlenderService implements OnModuleInit, OnModuleDestroy {
     // Clean up WebSocket connection
     if (this.wsReconnectInterval) {
       clearInterval(this.wsReconnectInterval);
+      this.wsReconnectInterval = null;
+    }
+    
+    if (this.connectionAttemptTimeout) {
+      clearTimeout(this.connectionAttemptTimeout);
+      this.connectionAttemptTimeout = null;
     }
     
     if (this.wsClient) {
@@ -79,10 +87,25 @@ export class BlenderService implements OnModuleInit, OnModuleDestroy {
    * Connect to the WebSocket server
    */
   private async connectWebSocket(): Promise<void> {
+    // If a connection attempt is already in progress, don't start another
+    if (this.connectionInProgress) {
+      this.logger.debug('Connection attempt already in progress, skipping');
+      return;
+    }
+    
+    this.connectionInProgress = true;
+    
     try {
       // Close existing connection if any
       if (this.wsClient) {
         this.wsClient.close();
+        this.wsClient = null;
+      }
+      
+      // Cancel any existing connection timeout
+      if (this.connectionAttemptTimeout) {
+        clearTimeout(this.connectionAttemptTimeout);
+        this.connectionAttemptTimeout = null;
       }
       
       // Try multiple endpoints if needed
@@ -109,20 +132,36 @@ export class BlenderService implements OnModuleInit, OnModuleDestroy {
           
           // Wait for connection to be established with timeout
           await new Promise<void>((resolve, reject) => {
-            const timeout = setTimeout(() => {
+            // Set timeout to prevent indefinite waiting
+            this.connectionAttemptTimeout = setTimeout(() => {
               this.logger.warn(`WebSocket connection timeout for ${endpoint}, trying next endpoint...`);
+              
+              // Cleanup listeners to prevent memory leaks
+              if (this.wsClient) {
+                this.wsClient.removeAllListeners('open');
+                this.wsClient.removeAllListeners('error');
+                this.wsClient.close();
+                this.wsClient = null;
+              }
+              
               reject(new Error('Connection timeout'));
             }, 3000);
             
             this.wsClient!.on('open', () => {
-              clearTimeout(timeout);
+              if (this.connectionAttemptTimeout) {
+                clearTimeout(this.connectionAttemptTimeout);
+                this.connectionAttemptTimeout = null;
+              }
               this.logger.log(`WebSocket connection established with Blender Bridge at ${endpoint}`);
               connected = true;
               resolve();
             });
             
             this.wsClient!.on('error', (error) => {
-              clearTimeout(timeout);
+              if (this.connectionAttemptTimeout) {
+                clearTimeout(this.connectionAttemptTimeout);
+                this.connectionAttemptTimeout = null;
+              }
               lastError = error;
               this.logger.error(`WebSocket error for ${endpoint}: ${error.message}`);
               reject(error);
@@ -168,6 +207,9 @@ export class BlenderService implements OnModuleInit, OnModuleDestroy {
     } catch (error) {
       this.logger.error(`Failed to connect to WebSocket: ${error.message}`);
       // Don't throw, just log the error
+    } finally {
+      // Reset connection status regardless of success or failure
+      this.connectionInProgress = false;
     }
   }
   
@@ -177,11 +219,19 @@ export class BlenderService implements OnModuleInit, OnModuleDestroy {
   private async sendWebSocketMessage<T = any>(message: any): Promise<T> {
     if (!this.wsClient || this.wsClient.readyState !== WebSocket.OPEN) {
       await this.connectWebSocket();
+      
+      // Double check if connection was successful
+      if (!this.wsClient || this.wsClient.readyState !== WebSocket.OPEN) {
+        throw new Error('Failed to establish WebSocket connection for sending message');
+      }
     }
     
     return new Promise<T>((resolve, reject) => {
-      const messageId = Date.now().toString();
+      // Generate a unique message ID
+      const messageId = `msg_${Date.now()}_${Math.random().toString(36).substring(2, 10)}`;
+      
       const timeout = setTimeout(() => {
+        // Clean up listener to prevent memory leaks
         this.wsClient?.removeListener('message', messageHandler);
         reject(new Error('WebSocket response timeout'));
       }, 30000); // 30 seconds timeout
@@ -190,8 +240,9 @@ export class BlenderService implements OnModuleInit, OnModuleDestroy {
         try {
           const response = JSON.parse(data.toString());
           
-          // Check if this is a response to our message
-          if (response.type === 'result' || response.type === 'error') {
+          // Check if this is a response to our message by matching ID
+          if ((response.type === 'result' || response.type === 'error') && 
+              response.id === messageId) {
             // Remove listeners
             this.wsClient!.removeListener('message', messageHandler);
             clearTimeout(timeout);
@@ -202,6 +253,7 @@ export class BlenderService implements OnModuleInit, OnModuleDestroy {
               resolve(response.data);
             }
           }
+          // Ignore messages with different IDs
         } catch (error) {
           // Do not continue listening in case of parsing errors
           // This is necessary to avoid memory leaks
@@ -214,7 +266,7 @@ export class BlenderService implements OnModuleInit, OnModuleDestroy {
       // Listen for message response
       this.wsClient!.on('message', messageHandler);
       
-      // Send the message
+      // Send the message with the ID
       this.wsClient!.send(JSON.stringify({
         ...message,
         id: messageId,

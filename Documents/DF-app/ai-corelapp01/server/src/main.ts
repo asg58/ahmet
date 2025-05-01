@@ -65,6 +65,9 @@ async function bootstrap() {
     const port = process.env.PORT || 4000;
     logger.log(`Attempting to start server on port ${port}...`);
     
+    // Set up graceful shutdown
+    setupGracefulShutdown(app, logger);
+    
     // This is the critical point where the server should start listening
     await app.listen(port, '0.0.0.0');
     
@@ -79,6 +82,62 @@ async function bootstrap() {
     console.error('Failed to start the application:', error);
     process.exit(1);
   }
+}
+
+/**
+ * Set up graceful shutdown handling to ensure all resources are properly released
+ */
+function setupGracefulShutdown(app, logger: Logger) {
+  // Listen for shutdown signals
+  const signals = ['SIGTERM', 'SIGINT', 'SIGUSR2'];
+  
+  let shuttingDown = false;
+  
+  signals.forEach(signal => {
+    process.on(signal, async () => {
+      if (shuttingDown) {
+        logger.warn(`Received ${signal} during shutdown process. Ignoring.`);
+        return;
+      }
+      
+      shuttingDown = true;
+      logger.log(`Received ${signal}. Starting graceful shutdown...`);
+      
+      try {
+        // Allow up to 10 seconds for graceful shutdown
+        const shutdownTimeout = setTimeout(() => {
+          logger.error('Graceful shutdown timed out after 10 seconds. Forcing exit.');
+          process.exit(1);
+        }, 10000);
+        
+        // Close NestJS application (this will trigger onModuleDestroy hooks)
+        await app.close();
+        logger.log('Application shutdown completed successfully');
+        
+        // Cancel timeout if we completed in time
+        clearTimeout(shutdownTimeout);
+        
+        // Exit with success code
+        process.exit(0);
+      } catch (error) {
+        logger.error(`Error during graceful shutdown: ${error.message}`);
+        process.exit(1);
+      }
+    });
+  });
+  
+  // Handle unhandled promise rejections
+  process.on('unhandledRejection', (reason, promise) => {
+    logger.error('Unhandled Promise Rejection:', reason);
+    // Don't exit here, just log the error
+  });
+  
+  // Handle uncaught exceptions
+  process.on('uncaughtException', (error) => {
+    logger.error('Uncaught Exception:', error);
+    // Exit for uncaught exceptions as they can leave the application in an inconsistent state
+    process.exit(1);
+  });
 }
 
 bootstrap(); 

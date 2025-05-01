@@ -44,10 +44,7 @@ export class ChatMemoryService implements OnModuleInit, OnModuleDestroy {
 
   onModuleDestroy() {
     // Stop de periodieke update
-    if (this.updateInterval) {
-      clearInterval(this.updateInterval);
-      this.updateInterval = null;
-    }
+    this.stopPeriodicUpdate();
     
     // Sla het geheugen op voordat de applicatie stopt
     this.saveMemoryToDisk().catch(err => {
@@ -59,16 +56,33 @@ export class ChatMemoryService implements OnModuleInit, OnModuleDestroy {
    * Start de periodieke update van het chatgeheugen
    */
   private startPeriodicUpdate(intervalMs: number) {
+    // Make sure we don't have multiple intervals running
+    this.stopPeriodicUpdate();
+    
     this.updateInterval = setInterval(() => {
       if (this.memoryDirty) {
-        this.saveMemoryToDisk().catch(err => {
-          this.logger.error(`Periodic chat memory update failed: ${err.message}`);
-        });
-        this.memoryDirty = false;
+        this.saveMemoryToDisk()
+          .then(() => {
+            this.memoryDirty = false;
+          })
+          .catch(err => {
+            this.logger.error(`Periodic chat memory update failed: ${err.message}`);
+          });
       }
     }, intervalMs);
     
     this.logger.log(`Periodic chat memory updates started (interval: ${intervalMs}ms)`);
+  }
+  
+  /**
+   * Stop de periodieke update van het chatgeheugen
+   */
+  private stopPeriodicUpdate() {
+    if (this.updateInterval) {
+      clearInterval(this.updateInterval);
+      this.updateInterval = null;
+      this.logger.debug('Periodic chat memory updates stopped');
+    }
   }
 
   /**
@@ -241,9 +255,16 @@ export class ChatMemoryService implements OnModuleInit, OnModuleDestroy {
   }
 
   /**
-   * Forceer een onmiddellijke opslag van het geheugen
+   * Force the memory to be saved to disk immediately
    */
   async forceSave(): Promise<void> {
-    return this.saveMemoryToDisk();
+    try {
+      await this.saveMemoryToDisk();
+      this.memoryDirty = false;
+      return Promise.resolve();
+    } catch (error) {
+      this.logger.error(`Force save failed: ${error.message}`);
+      return Promise.reject(error);
+    }
   }
 } 

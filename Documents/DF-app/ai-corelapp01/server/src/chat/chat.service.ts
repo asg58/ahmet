@@ -30,157 +30,233 @@ export class ChatService {
   async processMessage(sessionId: string, message: string): Promise<ChatMessage> {
     this.logger.debug(`Processing message for session ${sessionId}: ${message}`);
     
-    // Create or get session
-    if (!this.sessions.has(sessionId)) {
-      const existingMemory = this.chatMemoryService.getConversation(sessionId);
-      
-      if (existingMemory) {
-        // Gebruik bestaande conversatie uit geheugen
-        this.logger.debug(`Restoring session ${sessionId} from memory with ${existingMemory.messages.length} messages`);
-        this.sessions.set(sessionId, {
-          id: sessionId,
-          messages: [...existingMemory.messages],
-          platform: existingMemory.metadata?.platform || null,
-        });
-      } else {
-        // Maak een nieuwe sessie
-        this.sessions.set(sessionId, {
-          id: sessionId,
-          messages: [],
-          platform: null,
-        });
-      }
+    if (!sessionId) {
+      const errorMsg = 'Invalid session ID provided';
+      this.logger.error(errorMsg);
+      return { role: 'assistant', content: errorMsg };
     }
     
-    const session = this.sessions.get(sessionId);
-    
-    // Add user message to history
-    const userMessage: ChatMessage = { role: 'user', content: message };
-    session.messages.push(userMessage);
-    
-    // Update ChatMemoryService with new message
-    this.chatMemoryService.addChatMessage(sessionId, userMessage, {
-      platform: session.platform,
-      timestamp: new Date().toISOString()
-    });
+    if (!message || typeof message !== 'string') {
+      const errorMsg = 'Invalid message content provided';
+      this.logger.error(errorMsg);
+      return { role: 'assistant', content: errorMsg };
+    }
     
     try {
-      // Controleer eerst of Ollama service beschikbaar is
-      const ollamaStatus = await this.ollamaService.getStatus();
-      
-      if (!ollamaStatus.initialized || ollamaStatus.connectionError) {
-        throw new Error(
-          `De taalmodel service (Ollama) is momenteel niet beschikbaar. ` +
-          `Zorg ervoor dat de Ollama service draait op ${ollamaStatus.baseUrl}. ` +
-          `Technische details: ${ollamaStatus.status}`
-        );
-      }
-      
-      // Detect intent using our enhanced intent service with context
-      const intent = await this.intentService.detectIntent(
-        message, 
-        session.messages.slice(-5), // Gebruik laatste 5 berichten als context
-        {
-          sessionId,
-          useContext: true,
-          includeDomainKnowledge: true,
-          detailLevel: 'detailed'
+      // Create or get session
+      if (!this.sessions.has(sessionId)) {
+        const existingMemory = this.chatMemoryService.getConversation(sessionId);
+        
+        if (existingMemory) {
+          // Gebruik bestaande conversatie uit geheugen
+          this.logger.debug(`Restoring session ${sessionId} from memory with ${existingMemory.messages.length} messages`);
+          
+          // Validate the restored messages structure
+          const validatedMessages = existingMemory.messages.filter(msg => 
+            msg && typeof msg === 'object' && 
+            (msg.role === 'user' || msg.role === 'assistant' || msg.role === 'system') &&
+            typeof msg.content === 'string'
+          );
+          
+          this.sessions.set(sessionId, {
+            id: sessionId,
+            messages: [...validatedMessages],
+            platform: existingMemory.metadata?.platform || null,
+          });
+        } else {
+          // Maak een nieuwe sessie
+          this.sessions.set(sessionId, {
+            id: sessionId,
+            messages: [],
+            platform: null,
+          });
         }
-      );
-      
-      this.logger.debug(`Detected intent: ${intent.type} (${intent.platform}) - ${intent.action}`);
-      
-      // Update platform als de intent een specifiek platform aangeeft
-      if (intent.platform !== 'general' && intent.platform !== session.platform) {
-        this.logger.debug(`Switching platform from ${session.platform} to ${intent.platform}`);
-        session.platform = intent.platform;
       }
       
-      // Get current design context if available
-      const currentContext = await this.getCurrentDesignContext(session.platform);
+      const session = this.sessions.get(sessionId);
       
-      // Query API documentation and conversation memory for relevant context
-      const relevantDocs = await this.getRelevantApiDocs(message, session.platform, currentContext);
-      const relevantMemory = await this.getRelevantConversationMemory(message, sessionId, currentContext);
+      // Add user message to history
+      const userMessage: ChatMessage = { role: 'user', content: message };
+      session.messages.push(userMessage);
       
-      // Build prompt with enhanced context
-      const enhancedMessages = this.enhanceMessagesWithContext(
-        session.messages, 
-        relevantDocs, 
-        relevantMemory, 
-        currentContext,
-        intent
-      );
-      
-      // Get a response using OllamaService
-      const response = await this.ollamaService.chatCompletion({
-        messages: enhancedMessages,
-        model: 'mistral', // Use a better model for actual responses
-        temperature: 0.7,
-        presence_penalty: 0.6
-      });
-      
-      // Extract assistant message from response
-      const assistantMessage: ChatMessage = { 
-        role: 'assistant', 
-        content: response.choices[0].message.content 
-      };
-      
-      // Add to session history
-      session.messages.push(assistantMessage);
-      
-      // Update ChatMemoryService with AI response
-      this.chatMemoryService.addChatMessage(sessionId, assistantMessage, {
+      // Update ChatMemoryService with new message
+      this.chatMemoryService.addChatMessage(sessionId, userMessage, {
         platform: session.platform,
-        timestamp: new Date().toISOString(),
-        intent: intent.type,
-        action: intent.action
+        timestamp: new Date().toISOString()
       });
       
-      return assistantMessage;
-    } catch (error) {
-      this.logger.error(`Error processing message: ${error.message}`);
-      
-      // Categoriseer en maak betere foutmeldingen
-      let errorContent = "";
-      
-      if (error.message.includes('Ollama') || error.message.includes('taalmodel')) {
-        errorContent = 
-          "De AI taalmodelservice (Ollama) is momenteel niet beschikbaar. " +
-          "Controleer of Ollama draait op je computer. " +
-          "Je kunt Ollama starten door het commando 'ollama serve' uit te voeren in een terminal. " +
-          "\n\nTechnische details: " + error.message;
-      } else if (error.code === 'ECONNREFUSED' || error.message.includes('connection')) {
-        errorContent = 
-          "Er kon geen verbinding worden gemaakt met een externe service. " +
-          "Controleer je internetverbinding en of alle benodigde services draaien. " +
-          "\n\nTechnische details: " + error.message;
-      } else if (error.message.includes('platform') || error.message.includes('software')) {
-        errorContent = 
-          "Er is een probleem met de software-integratie (CorelDRAW of Blender). " +
-          "Controleer of de juiste software is geïnstalleerd en actief is. " +
-          "\n\nTechnische details: " + error.message;
-      } else {
-        errorContent = `Er is een fout opgetreden bij het verwerken van je bericht: ${error.message}`;
+      try {
+        // Controleer eerst of Ollama service beschikbaar is
+        const ollamaStatus = await this.ollamaService.getStatus();
+        
+        if (!ollamaStatus.initialized || ollamaStatus.connectionError) {
+          throw new Error(
+            `De taalmodel service (Ollama) is momenteel niet beschikbaar. ` +
+            `Zorg ervoor dat de Ollama service draait op ${ollamaStatus.baseUrl}. ` +
+            `Technische details: ${ollamaStatus.status}`
+          );
+        }
+        
+        // Detect intent using our enhanced intent service with context
+        let intent;
+        try {
+          intent = await this.intentService.detectIntent(
+            message, 
+            session.messages.slice(-5), // Gebruik laatste 5 berichten als context
+            {
+              sessionId,
+              useContext: true,
+              includeDomainKnowledge: true,
+              detailLevel: 'detailed'
+            }
+          );
+          
+          this.logger.debug(`Detected intent: ${intent.type} (${intent.platform}) - ${intent.action}`);
+        } catch (intentError) {
+          this.logger.warn(`Intent detection failed: ${intentError.message}. Proceeding with default intent.`);
+          intent = { 
+            type: 'general', 
+            platform: session.platform || 'general',
+            action: 'chat',
+            confidence: 0.5
+          };
+        }
+        
+        // Update platform als de intent een specifiek platform aangeeft
+        if (intent.platform !== 'general' && intent.platform !== session.platform) {
+          this.logger.debug(`Switching platform from ${session.platform} to ${intent.platform}`);
+          session.platform = intent.platform;
+        }
+        
+        // Get current design context if available
+        let currentContext = null;
+        try {
+          currentContext = await this.getCurrentDesignContext(session.platform);
+        } catch (contextError) {
+          this.logger.warn(`Failed to get design context: ${contextError.message}`);
+        }
+        
+        // Query API documentation and conversation memory for relevant context
+        let relevantDocs = [];
+        let relevantMemory = [];
+        
+        try {
+          relevantDocs = await this.getRelevantApiDocs(message, session.platform, currentContext);
+        } catch (docsError) {
+          this.logger.warn(`Failed to retrieve API docs: ${docsError.message}`);
+        }
+        
+        try {
+          relevantMemory = await this.getRelevantConversationMemory(message, sessionId, currentContext);
+        } catch (memoryError) {
+          this.logger.warn(`Failed to retrieve conversation memory: ${memoryError.message}`);
+        }
+        
+        // Build prompt with enhanced context
+        const enhancedMessages = this.enhanceMessagesWithContext(
+          session.messages, 
+          relevantDocs, 
+          relevantMemory, 
+          currentContext,
+          intent
+        );
+        
+        // Get a response using OllamaService
+        const response = await this.ollamaService.chatCompletion({
+          messages: enhancedMessages,
+          model: 'mistral', // Use a better model for actual responses
+          temperature: 0.7,
+          presence_penalty: 0.6
+        });
+        
+        if (!response || !response.choices || !response.choices[0] || !response.choices[0].message) {
+          throw new Error('Received invalid response from language model');
+        }
+        
+        // Extract assistant message from response
+        const assistantMessage: ChatMessage = { 
+          role: 'assistant', 
+          content: response.choices[0].message.content 
+        };
+        
+        // Add to session history
+        session.messages.push(assistantMessage);
+        
+        // Update ChatMemoryService with AI response
+        this.chatMemoryService.addChatMessage(sessionId, assistantMessage, {
+          platform: session.platform,
+          timestamp: new Date().toISOString(),
+          intent: intent.type,
+          action: intent.action
+        });
+        
+        return assistantMessage;
+      } catch (error) {
+        this.logger.error(`Error processing message: ${error.message}`);
+        
+        // Categoriseer en maak betere foutmeldingen
+        let errorContent = "";
+        
+        if (error.message.includes('Ollama') || error.message.includes('taalmodel')) {
+          errorContent = 
+            "De AI taalmodelservice (Ollama) is momenteel niet beschikbaar. " +
+            "Controleer of Ollama draait op je computer. " +
+            "Je kunt Ollama starten door het commando 'ollama serve' uit te voeren in een terminal. " +
+            "\n\nTechnische details: " + error.message;
+        } else if (error.code === 'ECONNREFUSED' || error.message.includes('connection')) {
+          errorContent = 
+            "Er kon geen verbinding worden gemaakt met een externe service. " +
+            "Controleer je internetverbinding en of alle benodigde services draaien. " +
+            "\n\nTechnische details: " + error.message;
+        } else if (error.message.includes('platform') || error.message.includes('software')) {
+          errorContent = 
+            "Er is een probleem met de software-integratie (CorelDRAW of Blender). " +
+            "Controleer of de juiste software is geïnstalleerd en actief is. " +
+            "\n\nTechnische details: " + error.message;
+        } else if (error.message.includes('timeout') || error.message.includes('timed out')) {
+          errorContent = 
+            "Een verzoek aan een externe service heeft te lang geduurd. " +
+            "Dit kan worden veroorzaakt door netwerkproblemen of een overbelaste server. " +
+            "Probeer het later opnieuw. " +
+            "\n\nTechnische details: " + error.message;
+        } else if (error.message.includes('memory') || error.message.includes('geheugen')) {
+          errorContent = 
+            "Er is een probleem opgetreden bij het ophalen of opslaan van de gespreksgeschiedenis. " +
+            "Je gesprek wordt mogelijk niet volledig bewaard. " +
+            "\n\nTechnische details: " + error.message;
+        } else {
+          errorContent = `Er is een fout opgetreden bij het verwerken van je bericht: ${error.message}`;
+        }
+        
+        // Create an error response
+        const errorMessage: ChatMessage = {
+          role: 'assistant',
+          content: errorContent,
+        };
+        
+        // Still add to history so we have a record
+        session.messages.push(errorMessage);
+        
+        // Ook fouten opslaan in het geheugen
+        try {
+          this.chatMemoryService.addChatMessage(sessionId, errorMessage, {
+            platform: session.platform,
+            timestamp: new Date().toISOString(),
+            error: error.message
+          });
+        } catch (memoryError) {
+          this.logger.error(`Failed to save error to chat memory: ${memoryError.message}`);
+        }
+        
+        return errorMessage;
       }
-      
-      // Create an error response
-      const errorMessage: ChatMessage = {
+    } catch (outerError) {
+      // Handle unexpected errors that might occur before session is created
+      this.logger.error(`Critical error in processMessage: ${outerError.message}`);
+      return {
         role: 'assistant',
-        content: errorContent,
+        content: `Er is een kritieke systeemfout opgetreden. Probeer de applicatie opnieuw op te starten. Details: ${outerError.message}`
       };
-      
-      // Still add to history so we have a record
-      session.messages.push(errorMessage);
-      
-      // Ook fouten opslaan in het geheugen
-      this.chatMemoryService.addChatMessage(sessionId, errorMessage, {
-        platform: session.platform,
-        timestamp: new Date().toISOString(),
-        error: error.message
-      });
-      
-      return errorMessage;
     }
   }
   

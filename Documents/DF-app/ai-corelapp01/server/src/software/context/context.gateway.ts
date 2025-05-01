@@ -52,6 +52,11 @@ export class ContextGateway implements OnGatewayInit, OnGatewayConnection, OnGat
   private readonly subscriptions = new Map<string, ContextSubscription>();
   private readonly activeTracking = new Set<string>(); // Set of active platforms
   
+  // Add a message queue and processing flag for context updates
+  private readonly updateQueue: { platform: 'coreldraw' | 'blender', update: ContextUpdate }[] = [];
+  private isProcessingQueue = false;
+  private queueProcessingInterval: NodeJS.Timeout | null = null;
+  
   constructor(
     private readonly blenderContextAnalyzer: BlenderContextAnalyzer,
     private readonly corelContextAnalyzer: CorelContextAnalyzer,
@@ -63,6 +68,57 @@ export class ContextGateway implements OnGatewayInit, OnGatewayConnection, OnGat
     // Log adapter details
     const adapter = this.server.adapter;
     this.logger.log(`Using adapter: ${adapter.constructor.name}`);
+    
+    // Start queue processing
+    this.startQueueProcessing();
+  }
+  
+  // Add cleanup method for queue processing
+  private startQueueProcessing() {
+    if (this.queueProcessingInterval) {
+      clearInterval(this.queueProcessingInterval);
+    }
+    
+    this.queueProcessingInterval = setInterval(() => {
+      this.processNextQueueItem();
+    }, 50); // Process queue items every 50ms
+  }
+  
+  // Process next item in the queue
+  private async processNextQueueItem() {
+    // If already processing or queue is empty, skip
+    if (this.isProcessingQueue || this.updateQueue.length === 0) {
+      return;
+    }
+    
+    this.isProcessingQueue = true;
+    
+    try {
+      // Take the next item from the queue
+      const item = this.updateQueue.shift();
+      
+      if (item) {
+        // Process the update
+        await this.distributeContextUpdate(item.platform, item.update);
+      }
+    } catch (error) {
+      this.logger.error(`Error processing context update queue: ${error.message}`);
+    } finally {
+      this.isProcessingQueue = false;
+    }
+  }
+  
+  // Cleanup on destroy
+  async onModuleDestroy() {
+    if (this.queueProcessingInterval) {
+      clearInterval(this.queueProcessingInterval);
+      this.queueProcessingInterval = null;
+    }
+    
+    // Stop all active tracking
+    for (const platform of this.activeTracking) {
+      await this.stopTracking(platform as 'coreldraw' | 'blender');
+    }
   }
   
   handleConnection(client: Socket) {
@@ -242,7 +298,15 @@ export class ContextGateway implements OnGatewayInit, OnGatewayConnection, OnGat
    * Process a context update and broadcast to relevant clients
    */
   private handleContextUpdate(platform: 'coreldraw' | 'blender', update: ContextUpdate) {
-    // Get all subscriptions for this platform and document
+    // Add update to queue instead of processing immediately
+    this.updateQueue.push({ platform, update });
+  }
+  
+  /**
+   * Distribute context update to relevant clients
+   */
+  private async distributeContextUpdate(platform: 'coreldraw' | 'blender', update: ContextUpdate) {
+    // Get all subscriptions for this platform
     const relevantSubs = Array.from(this.subscriptions.values())
       .filter(sub => sub.platform === platform);
     
@@ -261,52 +325,82 @@ export class ContextGateway implements OnGatewayInit, OnGatewayConnection, OnGat
     });
     
     // Send updates to each session
+    const updatePromises: Promise<void>[] = [];
+    
     sessionSubs.forEach((clientIds, sessionId) => {
       // Include session ID in update
       const sessionUpdate = {
         ...update,
         sessionId,
+        timestamp: Date.now() // Add timestamp for ordering
       };
       
       // Send to all clients subscribed to this session
       clientIds.forEach(clientId => {
-        this.server.to(clientId).emit('contextUpdate', sessionUpdate);
+        // Use a promise to track sending completion
+        const sendPromise = new Promise<void>((resolve) => {
+          this.server.to(clientId).emit('contextUpdate', sessionUpdate, () => {
+            resolve();
+          });
+        });
+        
+        updatePromises.push(sendPromise);
       });
     });
+    
+    // Wait for all updates to be sent
+    await Promise.all(updatePromises);
   }
   
   /**
-   * Throttle function to limit the rate of context updates
+   * Improved throttle function to prevent race conditions
    */
   private throttle<T>(func: (arg: T) => void, delay: number): (arg: T) => void {
     let lastCall = 0;
     let timeout: NodeJS.Timeout | null = null;
     let lastArgs: T | null = null;
+    let isExecuting = false;
     
     return (arg: T) => {
       const now = Date.now();
       const timeSinceLastCall = now - lastCall;
       
-      // Clear any pending calls
+      // Update last args
+      lastArgs = arg;
+      
+      // If already scheduled, don't schedule again
       if (timeout !== null) {
-        clearTimeout(timeout);
-        timeout = null;
+        return;
       }
       
-      if (timeSinceLastCall >= delay) {
-        // Execute immediately
-        lastCall = now;
-        func(arg);
+      // If currently executing or enough time has passed, execute on next tick
+      if (isExecuting || timeSinceLastCall >= delay) {
+        if (!isExecuting) {
+          isExecuting = true;
+          lastCall = now;
+          
+          // Execute on next tick to avoid blocking
+          process.nextTick(() => {
+            if (lastArgs !== null) {
+              func(lastArgs);
+              lastArgs = null;
+            }
+            isExecuting = false;
+          });
+        }
       } else {
         // Schedule to run after delay
-        lastArgs = arg;
         timeout = setTimeout(() => {
           lastCall = Date.now();
+          isExecuting = true;
+          
           if (lastArgs !== null) {
             func(lastArgs);
+            lastArgs = null;
           }
+          
+          isExecuting = false;
           timeout = null;
-          lastArgs = null;
         }, delay - timeSinceLastCall);
       }
     };

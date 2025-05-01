@@ -1,7 +1,7 @@
 services:
   # Frontend (React app)
   client:
-    image: ai-coreldraw-client:latest
+    image: ai-corelapp01-client:latest
     ports:
       - "3001:3000"
     volumes:
@@ -26,22 +26,20 @@ services:
 
   # API Gateway & WebSocket Server
   server:
-    build:
-      context: ./server
-      dockerfile: ../docker/Dockerfile.server
+    image: ai-corelapp01-server:fixed
     ports:
       - "4000:4000"  # REST API
       - "4001:4001"  # WebSocket
     volumes:
-      - ./server:/app
-      - /app/node_modules
+      - ./logs:/app/logs
+      - ./data:/app/data
     depends_on:
       - chromadb
       - ollama
       - blender-bridge
       - coreldraw-bridge
     environment:
-      - NODE_ENV=development
+      - NODE_ENV=production
       - OLLAMA_HOST=ollama
       - OLLAMA_PORT=11434
       - CHROMADB_HOST=chromadb
@@ -59,7 +57,7 @@ services:
       - app-network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "node", "-e", "require('http').get('http://localhost:4000/api/health', (res) => res.statusCode === 200 ? process.exit(0) : process.exit(1))"]
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:4000/api/health"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -72,26 +70,30 @@ services:
 
   # Blender Bridge Service
   blender-bridge:
-    image: blender-headless:latest
+    image: blender4-bridge:fixed
     ports:
       - "4201:4201"  # REST API
       - "4202:4202"  # WebSocket
+    volumes:
+      - ./integrations/blender/logs:/app/logs
+      - ./integrations/blender/data:/app/data
     environment:
-      - DEBUG=false
       - PORT=4201
       - WEBSOCKET_PORT=4202
       - HOST=0.0.0.0
-      - MOCK_BLENDER=true
       - LOG_LEVEL=INFO
+      - DEBUG=false
+      - MOCK_BLENDER=false
+      - BLENDER_PATH=/opt/blender/blender
     networks:
       - app-network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:4201/health | grep -q '\"status\":\"ok\"' || exit 1"]
+      test: ["CMD", "curl", "-f", "http://localhost:4201/health"]
       interval: 30s
       timeout: 10s
-      retries: 3
-      start_period: 30s
+      retries: 5
+      start_period: 10s
     logging:
       driver: "json-file"
       options:
@@ -100,7 +102,7 @@ services:
 
   # CorelDRAW Bridge Service
   coreldraw-bridge:
-    image: coreldraw-bridge:latest
+    image: ai-corelapp01-coreldraw-bridge:latest
     ports:
       - "5000:3001"  # REST API
     environment:

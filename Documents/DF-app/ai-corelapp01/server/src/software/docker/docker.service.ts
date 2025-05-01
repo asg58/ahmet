@@ -1,17 +1,27 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import { exec } from 'child_process';
 import { promisify } from 'util';
 import axios from 'axios';
 
 const execPromise = promisify(exec);
 
+interface DockerContainer {
+  id: string;
+  name: string;
+  platform: 'coreldraw' | 'blender';
+  createdAt: Date;
+  lastUsed: Date;
+  port: number;
+}
+
 /**
  * DockerService
  * 
  * Service for managing Docker containers for different design platforms.
+ * Includes automatic cleanup of idle containers and resource management.
  */
 @Injectable()
-export class DockerService {
+export class DockerService implements OnModuleInit, OnModuleDestroy {
   private readonly logger = new Logger(DockerService.name);
   
   // Docker image configuration
@@ -25,6 +35,30 @@ export class DockerService {
     coreldraw: 8080,
     blender: 9090
   };
+
+  // Container tracking
+  private activeContainers: Map<string, DockerContainer> = new Map();
+  private cleanupInterval: NodeJS.Timeout | null = null;
+  private readonly maxIdleTime = 30 * 60 * 1000; // 30 minutes
+  
+  async onModuleInit() {
+    // Start cleanup interval
+    this.startCleanupInterval();
+    
+    // Clean up any orphaned containers from previous runs
+    await this.cleanupOrphanedContainers();
+  }
+  
+  async onModuleDestroy() {
+    // Stop cleanup interval
+    if (this.cleanupInterval) {
+      clearInterval(this.cleanupInterval);
+      this.cleanupInterval = null;
+    }
+    
+    // Clean up all active containers
+    await this.cleanupAllContainers();
+  }
   
   /**
    * Start a new container for a specific platform
@@ -51,6 +85,16 @@ export class DockerService {
       // Wait for container to be ready
       await this.waitForContainerReady(containerId, platform, port);
       
+      // Track the container
+      this.activeContainers.set(containerId, {
+        id: containerId,
+        name: containerName,
+        platform,
+        createdAt: new Date(),
+        lastUsed: new Date(),
+        port
+      });
+      
       return containerId;
     } catch (error) {
       this.logger.error(`Failed to start ${platform} container: ${error.message}`);
@@ -66,9 +110,27 @@ export class DockerService {
       await execPromise(`docker stop ${containerId}`);
       await execPromise(`docker rm ${containerId}`);
       this.logger.log(`Stopped and removed container ${containerId}`);
+      
+      // Remove from tracking
+      this.activeContainers.delete(containerId);
     } catch (error) {
       this.logger.error(`Failed to stop container ${containerId}: ${error.message}`);
+      
+      // Still remove from tracking to avoid memory leaks
+      this.activeContainers.delete(containerId);
+      
       throw new Error(`Failed to stop container: ${error.message}`);
+    }
+  }
+  
+  /**
+   * Mark a container as used recently
+   */
+  updateContainerUsage(containerId: string): void {
+    const container = this.activeContainers.get(containerId);
+    if (container) {
+      container.lastUsed = new Date();
+      this.activeContainers.set(containerId, container);
     }
   }
   
@@ -77,7 +139,14 @@ export class DockerService {
    */
   async getContainerEndpoint(containerId: string): Promise<string> {
     try {
-      // Get the port mapping for the container
+      const container = this.activeContainers.get(containerId);
+      if (container) {
+        // Update last used time
+        this.updateContainerUsage(containerId);
+        return `http://localhost:${container.port}`;
+      }
+      
+      // If not in our tracking, try to get port from Docker
       const { stdout } = await execPromise(
         `docker port ${containerId}`
       );
@@ -111,10 +180,129 @@ export class DockerService {
         platform
       });
       
+      // Try to find container by endpoint and mark as used
+      for (const [id, container] of this.activeContainers.entries()) {
+        if (endpoint.includes(`:${container.port}`)) {
+          this.updateContainerUsage(id);
+          break;
+        }
+      }
+      
       return response.data;
     } catch (error) {
       this.logger.error(`Failed to execute command in container: ${error.message}`);
       throw new Error(`Failed to execute command: ${error.message}`);
+    }
+  }
+  
+  /**
+   * Get statistics about active containers
+   */
+  getContainerStats(): { totalContainers: number, byPlatform: { blender: number, coreldraw: number } } {
+    let blenderCount = 0;
+    let corelDrawCount = 0;
+    
+    for (const container of this.activeContainers.values()) {
+      if (container.platform === 'blender') {
+        blenderCount++;
+      } else if (container.platform === 'coreldraw') {
+        corelDrawCount++;
+      }
+    }
+    
+    return {
+      totalContainers: this.activeContainers.size,
+      byPlatform: {
+        blender: blenderCount,
+        coreldraw: corelDrawCount
+      }
+    };
+  }
+  
+  /**
+   * Start the cleanup interval for idle containers
+   */
+  private startCleanupInterval(): void {
+    if (this.cleanupInterval) {
+      clearInterval(this.cleanupInterval);
+    }
+    
+    this.cleanupInterval = setInterval(() => this.cleanupIdleContainers(), 5 * 60 * 1000); // Check every 5 minutes
+    this.logger.log('Container cleanup interval started');
+  }
+  
+  /**
+   * Clean up containers that haven't been used for a while
+   */
+  private async cleanupIdleContainers(): Promise<void> {
+    const now = new Date();
+    const containersToRemove: string[] = [];
+    
+    // Find idle containers
+    for (const [id, container] of this.activeContainers.entries()) {
+      const idleTime = now.getTime() - container.lastUsed.getTime();
+      if (idleTime > this.maxIdleTime) {
+        containersToRemove.push(id);
+      }
+    }
+    
+    // Remove idle containers
+    if (containersToRemove.length > 0) {
+      this.logger.log(`Cleaning up ${containersToRemove.length} idle containers`);
+      
+      for (const id of containersToRemove) {
+        try {
+          await this.stopContainer(id);
+        } catch (error) {
+          this.logger.error(`Failed to clean up container ${id}: ${error.message}`);
+        }
+      }
+    }
+  }
+  
+  /**
+   * Clean up orphaned containers from previous runs
+   */
+  private async cleanupOrphanedContainers(): Promise<void> {
+    try {
+      // Find containers with our naming pattern
+      const { stdout } = await execPromise(
+        `docker ps -a --filter "name=blender-|coreldraw-" --format "{{.ID}}"`
+      );
+      
+      if (!stdout.trim()) {
+        return; // No orphaned containers
+      }
+      
+      const containerIds = stdout.trim().split('\n');
+      this.logger.log(`Found ${containerIds.length} orphaned containers to clean up`);
+      
+      for (const id of containerIds) {
+        try {
+          await execPromise(`docker stop ${id} && docker rm ${id}`);
+          this.logger.log(`Cleaned up orphaned container ${id}`);
+        } catch (error) {
+          this.logger.error(`Failed to clean up orphaned container ${id}: ${error.message}`);
+        }
+      }
+    } catch (error) {
+      this.logger.error(`Error during orphaned container cleanup: ${error.message}`);
+    }
+  }
+  
+  /**
+   * Clean up all active containers
+   */
+  private async cleanupAllContainers(): Promise<void> {
+    this.logger.log(`Cleaning up all ${this.activeContainers.size} active containers`);
+    
+    const containerIds = Array.from(this.activeContainers.keys());
+    for (const id of containerIds) {
+      try {
+        await this.stopContainer(id);
+      } catch (error) {
+        this.logger.error(`Failed to clean up container ${id}: ${error.message}`);
+      }
     }
   }
   

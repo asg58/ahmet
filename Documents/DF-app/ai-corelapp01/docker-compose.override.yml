@@ -1,6 +1,11 @@
 # Docker Compose Override Configuration
-# Deze file wordt gebruikt om lokale overrides te specificeren en docker-compose.yml aan te vullen
-# Het bevat configuratie specifiek voor development
+# Development-specific overrides for docker-compose.yml
+
+x-logging: &default-logging
+  driver: "json-file"
+  options:
+    max-size: "10m"
+    max-file: "3"
 
 services:
   # Add logging driver to existing services
@@ -19,15 +24,12 @@ services:
       - CHOKIDAR_USEPOLLING=true
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 30s
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
+    logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          memory: 1GB
+          cpus: '0.5'
 
   server:
     build:
@@ -56,15 +58,12 @@ services:
       - LOG_LEVEL=debug
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:4000/api/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 30s
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
+    logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          memory: 2GB
+          cpus: '1.0'
     depends_on:
       - chromadb
       - ollama
@@ -82,17 +81,14 @@ services:
       - ANONYMIZED_TELEMETRY=false
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/heartbeat"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 30s
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
+    logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          memory: 1GB
+          cpus: '0.5'
 
-  # Prometheus - Metrics
+  # Monitoring stack
   prometheus:
     image: prom/prometheus:latest
     volumes:
@@ -107,13 +103,13 @@ services:
     ports:
       - "9090:9090"
     restart: unless-stopped
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
+    logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          memory: 512MB
+          cpus: '0.3'
 
-  # Grafana - Dashboard
   grafana:
     image: grafana/grafana:latest
     volumes:
@@ -126,13 +122,13 @@ services:
     ports:
       - "3000:3000"
     restart: unless-stopped
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
+    logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          memory: 512MB
+          cpus: '0.3'
 
-  # Loki - Log Aggregation
   loki:
     image: grafana/loki:latest
     volumes:
@@ -142,13 +138,13 @@ services:
       - "3100:3100"
     command: -config.file=/etc/loki/loki-config.yml
     restart: unless-stopped
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
+    logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          memory: 512MB
+          cpus: '0.3'
 
-  # Promtail - Log Collector
   promtail:
     image: grafana/promtail:latest
     volumes:
@@ -159,25 +155,25 @@ services:
     depends_on:
       - loki
     restart: unless-stopped
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
+    logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          memory: 256MB
+          cpus: '0.2'
 
-  # Node Exporter - Host Metrics
   node-exporter:
     image: prom/node-exporter:latest
     ports:
       - "9100:9100"
     restart: unless-stopped
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
+    logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          memory: 128MB
+          cpus: '0.1'
 
-  # cAdvisor - Container Metrics
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:latest
     volumes:
@@ -190,39 +186,33 @@ services:
       - "8080:8080"
     restart: unless-stopped
     privileged: true
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
+    logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          memory: 256MB
+          cpus: '0.3'
 
   blender-bridge:
-    image: blender-headless:latest
-    build:
-      context: ./integrations/blender
-      dockerfile: Dockerfile.blender
-    environment:
-      - PORT=4201
-      - WEBSOCKET_PORT=4203
-      - HOST=0.0.0.0
-      - MOCK_BLENDER=true
-    ports:
-      - "4201-4203:4201-4203"
+    image: blender4-bridge:fixed
     volumes:
-      - ./integrations/blender/app:/app
       - ./integrations/blender/logs:/app/logs
       - ./integrations/blender/data:/app/data
+    environment:
+      - MOCK_BLENDER=false
+      - BLENDER_PATH=/opt/blender/blender
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:4201/health"]
       interval: 30s
       timeout: 10s
-      retries: 3
+      retries: 5
       start_period: 10s
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
+    logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          memory: 1GB
+          cpus: '0.5'
 
   ollama:
     image: ollama/ollama:latest
@@ -239,11 +229,12 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
+    logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          memory: 12GB
+          cpus: '4.0'
 
 volumes:
   prometheus_data:
